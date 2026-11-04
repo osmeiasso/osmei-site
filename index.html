@@ -35,7 +35,8 @@ a:hover{color:var(--bleu-fonce)}
 
 /* Navigation */
 header.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--ligne)}
-header.nav .wrap{display:flex;align-items:center;justify-content:center;height:64px}
+header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+header.nav .logo{font-size:32px}
 header.nav .logo{font-size:30px}
 nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px}
 nav a{font-family:'Jost',sans-serif;font-size:15px;white-space:nowrap;text-decoration:none;color:var(--encre);padding:6px 0;border-bottom:2px solid transparent}
@@ -43,7 +44,7 @@ nav a:hover,nav a.actif{color:var(--bleu);border-bottom-color:var(--bleu)}
 .burger{display:none;background:none;border:1px solid var(--ligne);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--encre)}
 
 /* Accueil */
-.hero{position:relative;padding:48px 0 72px;text-align:center}
+.hero{position:relative;padding:56px 0 72px;text-align:center}
 .cadre{position:relative;margin:0 auto;max-width:900px;padding:74px 32px 66px;background:#fff}
 .cadre::before,.cadre::after{content:"";position:absolute;left:0;right:0;height:20px;background:var(--odd)}
 .cadre::before{top:0}.cadre::after{bottom:0}
@@ -56,7 +57,7 @@ nav a:hover,nav a.actif{color:var(--bleu);border-bottom-color:var(--bleu)}
 .carte-hero{margin:24px auto 0;max-width:680px}
 .carte-hero svg{display:block;width:100%;height:auto}
 .source-carte{font-size:11px;color:#8A949C;text-align:center;margin:58px auto 0;max-width:900px}
-@media (max-width:720px){.carte-hero svg .lbl{font-size:24px}.cadre{padding-left:8px;padding-right:8px}}
+@media (max-width:720px){.carte-hero svg .lbl{font-size:21px}.cadre{padding-left:8px;padding-right:8px}}
 .hero .cadre{padding-top:44px}
 .nom-complet{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(15px,2.2vw,20px);letter-spacing:.08em;color:#333;margin:26px 0 0}
 .nom-complet .o{color:var(--bleu)} .nom-complet .i{color:var(--vert);font-weight:400}
@@ -150,7 +151,6 @@ footer a{color:#fff}
   nav ul.ouvert{display:flex}
   nav li a{display:block;padding:10px 0}
   .burger{display:block}
-  header.nav .wrap{justify-content:flex-end}
 }
 @media (max-width:720px){
   .g2,.g3{grid-template-columns:1fr}
@@ -165,6 +165,7 @@ footer a{color:#fff}
 <header class="nav">
   <div class="bande" style="height:4px"></div>
   <div class="wrap">
+    <a href="#accueil" aria-label="Accueil" style="text-decoration:none"><span class="logo" role="img" aria-label="OSMEI"><span class="o">O</span>S<span class="m">M</span>E<span class="i">I</span></span></a>
     <nav>
       <button class="burger" aria-label="Menu" id="burger">&#9776;</button>
       <ul id="menu">
@@ -187,7 +188,6 @@ footer a{color:#fff}
 <!-- ACCUEIL -->
 <section class="hero">
   <div class="wrap">
-    <h1 class="logo" aria-label="OSMEI"><span class="o">O</span>S<span class="m">M</span>E<span class="i">I</span></h1>
     <div class="cadre">
       <span class="languette-odd" style="--i:3;background:#C5192D" title="ODD 4, Éducation de qualité"><span class="legende-odd" style="color:#C5192D">ODD 4 Éducation</span></span>
       <span class="languette-odd fin" style="--i:16;background:#19486A" title="ODD 17, Partenariats pour la réalisation des objectifs"><span class="legende-odd" style="color:#19486A">ODD 17 Partenariats</span></span>
