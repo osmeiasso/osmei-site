@@ -25,15 +25,16 @@ for (const n of voisinsNoms) if (!FR[n]) throw new Error('Nom français manquant
 const six = monde.filter(f => SIX[f.properties.name]);
 const voisins = monde.filter(f => voisinsNoms.has(f.properties.name));
 
-const W = 1200, H = 1060, M = 40, BANDE = 20, BLEU = '#1F5FA8';
-const haut = M + BANDE + 140, bas = H - M - BANDE - 120;
+const HERO = process.env.HERO === '1';
+const W = HERO ? 900 : 1200, H = HERO ? 940 : 1060, M = HERO ? 0 : 40, BANDE = HERO ? 0 : 20, BLEU = '#1F5FA8';
+const haut = M + BANDE + 140, bas = H - M - BANDE - (HERO ? 80 : 120);
 // Cadrage sur les six pays avec une marge, les voisins sont coupés au bord du cadre
-const proj = geoMercator().fitExtent([[M + 170, haut + 40], [W - M - 170, bas - 40]], { type: 'FeatureCollection', features: six });
+const proj = geoMercator().fitExtent([[M + (HERO ? 120 : 170), haut + 30], [W - M - (HERO ? 120 : 170), bas - 30]], { type: 'FeatureCollection', features: six });
 proj.clipExtent([[M, haut], [W - M, bas]]);
 const path = geoPath(proj);
 
-let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="Jost, Verdana, sans-serif">
-<rect width="${W}" height="${H}" fill="#FFFFFF"/>`;
+let svg = HERO ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Carte du Bassin du Congo : les six pays du massif forestier et leurs voisins" font-family="Jost, Verdana, sans-serif">`
+  : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="Jost, Verdana, sans-serif">\n<rect width="${W}" height="${H}" fill="#FFFFFF"/>`;
 // Pays frontaliers : contour bleu
 for (const f of voisins) svg += `<path d="${path(f)}" fill="none" stroke="${BLEU}" stroke-width="1.6" stroke-linejoin="round"/>`;
 // Six pays : contour noir
@@ -43,10 +44,10 @@ const ensemble = merge(topo, geoms.filter(g => SIX[g.properties.name]));
 svg += `<path d="${path(ensemble)}" fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="round"/>`;
 
 const txt = (x, y, lignes, coul, taille, ancre = 'middle') => lignes.map((l, i) =>
-  `<text x="${x}" y="${y + i * (taille + 4)}" text-anchor="${ancre}" font-size="${taille}" font-weight="500" fill="${coul}" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`).join('');
+  `<text class="lbl" x="${x}" y="${y + i * (taille + 4)}" text-anchor="${ancre}" font-size="${taille}" font-weight="500" fill="${coul}" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`).join('');
 
 // Étiquettes des pays frontaliers, au centre de leur partie visible
-const decalV = { 'Tanzanie': [-20, 0], 'Burundi': [-34, 6], 'Rwanda': [-30, -4], 'Ouganda': [0, 10], 'Nigeria': [0, 10], 'Angola': [-40, 0], 'Zambie': [45, 35], 'Soudan': [0, 0] };
+const decalV = { 'Tanzanie': [-20, 0], 'Burundi': [-34, 6], 'Rwanda': [-30, -4], 'Ouganda': [0, 10], 'Nigeria': [0, 10], 'Angola': [-40, 0], 'Zambie': [80, 5], 'Soudan': [0, 0] };
 for (const f of voisins) {
   const nom = FR[f.properties.name];
   const c = path.centroid(f); if (!isFinite(c[0])) continue;
@@ -96,15 +97,19 @@ svg += `<text x="${M + 72}" y="${ly + 6}" font-size="16" fill="#000000">Les six 
 svg += `<line x1="${M + 20}" y1="${ly + 30}" x2="${M + 60}" y2="${ly + 30}" stroke="${BLEU}" stroke-width="3"/>`;
 svg += `<text x="${M + 72}" y="${ly + 36}" font-size="16" fill="${BLEU}">Les pays frontaliers (frontière terrestre commune)</text>`;
 // Source
+if (!HERO) {
 svg += `<text x="${W - M}" y="${H - M - BANDE - 30}" text-anchor="end" font-size="12" fill="#5A6670">Source : Natural Earth, frontières administratives au 1:50 000 000 (naturalearthdata.com), domaine public.</text>`;
 svg += `<text x="${W - M}" y="${H - M - BANDE - 12}" text-anchor="end" font-size="12" fill="#5A6670">Données mises en forme par world-atlas 2.0 (M. Bostock, licence ISC). Projection de Mercator.</text>`;
+}
 // Bandes ODD
+if (!HERO) {
 const ODD = ['#E5243B','#DDA63A','#4C9F38','#C5192D','#FF3A21','#26BDE2','#FCC30B','#A21942','#FD6925','#DD1367','#FD9D24','#BF8B2E','#3F7E44','#0A97D9','#56C02B','#00689D','#19486A'];
 const larg = (W - 2 * M) / 17;
 ODD.forEach((c, i) => {
   svg += `<rect x="${M + i * larg}" y="${M}" width="${larg + 0.5}" height="${BANDE}" fill="${c}"/>`;
   svg += `<rect x="${M + i * larg}" y="${H - M - BANDE}" width="${larg + 0.5}" height="${BANDE}" fill="${c}"/>`;
 });
+}
 svg += `</svg>`;
-fs.writeFileSync('carte-frontaliers.svg', svg);
+fs.writeFileSync(HERO ? 'carte-frontaliers-accueil.svg' : 'carte-frontaliers.svg', svg);
 console.log('ok', [...voisinsNoms].map(n => FR[n]).join(', '));
