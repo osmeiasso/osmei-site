@@ -121,6 +121,9 @@ select.pays-sel{font-family:'Jost',sans-serif;font-size:14px;padding:6px 12px;bo
 .acces:hover{box-shadow:0 4px 14px rgba(0,0,0,.07)}
 @media (max-width:860px){.rubriques-acces{grid-template-columns:1fr 1fr}}
 
+.source-def{font-size:12px;color:var(--gris);margin:-6px 0 34px}
+.source-def a{color:var(--gris)}
+
 /* Pays du Bassin du Congo (présentation par fiches, drapeau au-dessus du nom) */
 .titre-section{font-size:clamp(22px,3vw,28px);color:var(--encre);margin:0 0 22px}
 .grille-pays{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
@@ -233,6 +236,7 @@ footer a{color:#fff}
     <div class="surtitre" id="r-sur">Rubrique</div>
     <h2 id="r-titre"></h2>
     <p class="texte" id="r-desc"></p>
+    <p class="source-def" id="r-source" hidden></p>
     <div id="bloc-pays" hidden>
       <div class="surtitre" style="margin-top:8px">Territoires</div>
       <h3 class="titre-section">Les pays du Bassin du Congo</h3>
@@ -452,7 +456,7 @@ var POSTS = [{"id": 1, "pillar": "Série pays", "pays": "République du Congo", 
 (function(){
   var ODD_COUL=[null,'#E5243B','#DDA63A','#4C9F38','#C5192D','#FF3A21','#26BDE2','#FCC30B','#A21942','#FD6925','#DD1367','#FD9D24','#BF8B2E','#3F7E44','#0A97D9','#56C02B','#00689D','#19486A'];
   var RUBS=[
-    {nom:"Série pays",label:"Le Bassin du Congo",id:"bassin-du-congo",sous:["Territoires","Fleuve et zones humides","Forêts, faune et flore","Sols et agriculture","Climat","Énergie","Ressources minières","Sociétés","Gouvernance"],coul:"#3D7CC9",desc:"Le territoire des six pays du massif forestier, ses milieux, ses ressources et ses sociétés, thème par thème."},
+    {nom:"Série pays",label:"Le Bassin du Congo",id:"bassin-du-congo",sous:["Territoires","Fleuve et zones humides","Forêts, faune et flore","Sols et agriculture","Climat","Énergie","Ressources minières","Sociétés","Gouvernance"],coul:"#3D7CC9",desc:"Le Bassin du Congo forme le deuxième plus grand massif de forêt tropicale de la planète, après l'Amazonie. Il s'étend sur environ 3,7 millions de km² et six pays : le Cameroun, le Gabon, la Guinée équatoriale, la République centrafricaine, la République du Congo et la République démocratique du Congo. Forêts, savanes, marécages, rivières et forêts inondées y composent une mosaïque de milieux. On y recense quelque 10 000 espèces de plantes tropicales, dont près d'un tiers n'existent nulle part ailleurs, ainsi que des éléphants de forêt, des chimpanzés, des bonobos et des gorilles. Plus de 75 millions de personnes, issues de près de 150 groupes ethniques, en dépendent pour vivre.",source:"Source : WWF France, « Bassin du Congo »",sourceUrl:"https://www.wwf.fr/territoires/bassin-du-congo"},
     {nom:"Métiers & éducation",titre:"Métiers et éducation orientés développement durable",id:"metiers-education",coul:"#C9A227",desc:"Les métiers et les cursus de la durabilité, et les voix des habitants des territoires. Devinez le métier, puis découvrez la formation qui y mène."},
     {nom:"Actualité & ODD",id:"actualite-odd",coul:"#4CAF6D",desc:"L'actualité du climat et de la biodiversité, les dates clés et les Objectifs de développement durable expliqués simplement."},
     {nom:"Ludique",id:"ludique",coul:"#8E6CD8",desc:"Quiz, vrai ou faux, carte mystère, qui suis-je : apprendre en jouant. Les réponses s'affichent d'un clic."}
@@ -540,6 +544,8 @@ var POSTS = [{"id": 1, "pillar": "Série pays", "pays": "République du Congo", 
     document.getElementById('r-sur').style.color=r.coul;
     document.getElementById('r-titre').textContent=r.titre||r.label||r.nom;
     document.getElementById('r-desc').textContent=r.desc;
+    var rs=document.getElementById('r-source'); rs.hidden=!r.source;
+    rs.innerHTML=r.source?'<a href="'+esc(r.sourceUrl)+'" target="_blank" rel="noopener">'+esc(r.source)+'</a>':'';
     document.getElementById('pubs').innerHTML=l.length?l.slice(0,etat.n).map(carte).join(''):vide(etat.sous?'Les articles de cette sous-rubrique apparaîtront ici.':'Les publications de cette rubrique apparaîtront ici.');
     document.getElementById('plus').hidden=l.length<=etat.n;
   }
