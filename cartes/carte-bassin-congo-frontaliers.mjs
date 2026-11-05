@@ -71,7 +71,11 @@ for (const f of six) {
     const aire = p => { const b = path.bounds({ type: 'Polygon', coordinates: p }); return (b[1][0] - b[0][0]) * (b[1][1] - b[0][1]); };
     const grand = polys.reduce((m, p) => aire(p) > aire(m) ? p : m);
     const b = path.bounds({ type: 'Polygon', coordinates: grand });
-    svg += txt(b[0][0] - 10, (b[0][1] + b[1][1]) / 2 - 6, ['Guinée', 'équatoriale'], '#000000', 16, 'end');
+    const my = (b[0][1] + b[1][1]) / 2;
+    // Flèche rouge vers la partie continentale
+    svg += `<defs><marker id="pointe" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#E5243B"/></marker></defs>`;
+    svg += `<line x1="${b[0][0] - 44}" y1="${my}" x2="${b[0][0] - 3}" y2="${my}" stroke="#E5243B" stroke-width="3" marker-end="url(#pointe)"/>`;
+    svg += txt(b[0][0] - 50, my - 6, ['Guinée', 'équatoriale'], '#000000', 16, 'end');
     continue;
   }
   const [x, y] = proj(geoCentroid(f));
@@ -86,6 +90,13 @@ for (const f of six) {
     continue;
   }
   svg += txt(x + dx, y + dy, lignes, '#000000', 17);
+}
+// Océan Atlantique
+{
+  const [ox, oy] = proj([6.2, -3.2]);
+  ['Océan', 'Atlantique'].forEach((l, i) => {
+    svg += `<text x="${ox}" y="${oy + i * 22}" text-anchor="middle" font-size="19" font-style="italic" fill="${BLEU}" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`;
+  });
 }
 // Titre
 svg += `<text x="${W / 2}" y="${M + BANDE + 66}" text-anchor="middle" font-size="50" font-weight="500" fill="#000000">Le Bassin du Congo</text>`;
