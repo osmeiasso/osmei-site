@@ -38,8 +38,8 @@ header.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);bac
 header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
 header.nav .logo{font-size:24px}
 header.nav .logo{font-size:24px}
-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px}
-nav a{font-family:'Jost',sans-serif;font-size:15px;white-space:nowrap;text-decoration:none;color:var(--encre);padding:6px 0;border-bottom:2px solid transparent}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:16px}
+nav a{font-family:'Jost',sans-serif;font-size:14.5px;white-space:nowrap;text-decoration:none;color:var(--encre);padding:6px 0;border-bottom:2px solid transparent}
 nav a:hover,nav a.actif{color:var(--bleu);border-bottom-color:var(--bleu)}
 .burger{display:none;background:none;border:1px solid var(--ligne);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--encre)}
 
@@ -163,7 +163,7 @@ footer a{color:#fff}
 @media (max-width:860px){
   .g3{grid-template-columns:1fr 1fr}
 }
-@media (max-width:1000px){
+@media (max-width:1140px){
   nav ul{display:none;max-height:calc(100vh - 64px);overflow:auto;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--ligne);padding:8px 24px 16px}
   nav ul.ouvert{display:flex}
   nav li a{display:block;padding:10px 0}
@@ -192,6 +192,7 @@ footer a{color:#fff}
         <li><a href="#actualite-odd">Actualité &amp; ODD</a></li>
         <li><a href="#ludique">Ludique</a></li>
         <li><a href="#qui-sommes-nous">Qui sommes-nous ?</a></li>
+        <li><a href="#formations">Nos formations</a></li>
         <li><a href="#actions">Nos actions</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -308,6 +309,42 @@ footer a{color:#fff}
 </section>
 </div>
 
+<div class="vue" data-vue="formations" hidden>
+<!-- FORMATIONS -->
+<section id="formations" class="bloc">
+  <div class="wrap">
+    <div class="surtitre">Nos formations</div>
+    <h2>Former les formateurs</h2>
+
+    <div class="grille g2">
+      <div class="carte v" data-odd="13">
+        <span class="etiquette v">Climat</span><span class="etiquette">Enseignants</span>
+        <h3>Enquêteurs du climat</h3>
+        <p>Former les enseignants à faire de leurs élèves des enquêteurs à la recherche d'indices climatiques. Avec différents thermomètres, la classe agit comme une équipe de météorologues. Les relevés appartiennent à l'école : année après année, elle peut analyser les variations du climat.</p>
+        <table>
+          <tr><th>Durée</th><td>4 heures</td></tr>
+          <tr><th>En présentiel</th><td>2 séances de 2 h, à une semaine d'intervalle</td></tr>
+          <tr><th>À distance</th><td>2 h synchrone, 1 h asynchrone (démonstration des outils), puis 1 h synchrone</td></tr>
+          <tr><th>Matériel</th><td>Instruments fournis en double à chaque enseignant formé, avec notices illustrées</td></tr>
+          <tr><th>Support</th><td>Livret pédagogique « Enquêteurs du climat »</td></tr>
+        </table>
+      </div>
+      <div class="carte" data-odd="13,15">
+        <span class="etiquette">Interdisciplinaire</span><span class="etiquette v">Bassin du Congo</span>
+        <h3>Formation de formateurs EDD : les tourbières du Bassin du Congo</h3>
+        <p>Un guide de formation interdisciplinaire, ouvert à toutes les disciplines : une partie cours, puis des modules d'activités de mise en situation, chacun avec son scénario pédagogique.</p>
+        <table>
+          <tr><th>Public</th><td>Enseignants et formateurs, toutes disciplines</td></tr>
+          <tr><th>Organisation</th><td>Cours, puis modules d'activités</td></tr>
+          <tr><th>Ressource associée</th><td>Dossier « Des tourbières du Bassin du Congo aux ODD »</td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="texte" style="margin-top:26px">Une formation vous intéresse pour votre établissement ou votre équipe ? <a href="#contact">Écrivez à l'association</a> pour en parler.</p>
+  </div>
+</section>
+</div>
+
 <div class="vue" data-vue="actions" hidden>
 <!-- ACTIONS -->
 <section id="actions" class="bloc doux">
@@ -359,40 +396,6 @@ footer a{color:#fff}
         <p>Pays du Bassin du Congo, actualité des ODD, jeux et métiers de la durabilité : retrouvez chaque publication dans sa rubrique.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- FORMATIONS -->
-<section id="formations" class="bloc">
-  <div class="wrap">
-    <div class="surtitre">Formations</div>
-    <h2>Former les formateurs</h2>
-
-    <div class="grille g2">
-      <div class="carte v" data-odd="13">
-        <span class="etiquette v">Climat</span><span class="etiquette">Enseignants</span>
-        <h3>Enquêteurs du climat</h3>
-        <p>Former les enseignants à faire de leurs élèves des enquêteurs à la recherche d'indices climatiques. Avec différents thermomètres, la classe agit comme une équipe de météorologues. Les relevés appartiennent à l'école : année après année, elle peut analyser les variations du climat.</p>
-        <table>
-          <tr><th>Durée</th><td>4 heures</td></tr>
-          <tr><th>En présentiel</th><td>2 séances de 2 h, à une semaine d'intervalle</td></tr>
-          <tr><th>À distance</th><td>2 h synchrone, 1 h asynchrone (démonstration des outils), puis 1 h synchrone</td></tr>
-          <tr><th>Matériel</th><td>Instruments fournis en double à chaque enseignant formé, avec notices illustrées</td></tr>
-          <tr><th>Support</th><td>Livret pédagogique « Enquêteurs du climat »</td></tr>
-        </table>
-      </div>
-      <div class="carte" data-odd="13,15">
-        <span class="etiquette">Interdisciplinaire</span><span class="etiquette v">Bassin du Congo</span>
-        <h3>Formation de formateurs EDD : les tourbières du Bassin du Congo</h3>
-        <p>Un guide de formation interdisciplinaire, ouvert à toutes les disciplines : une partie cours, puis des modules d'activités de mise en situation, chacun avec son scénario pédagogique.</p>
-        <table>
-          <tr><th>Public</th><td>Enseignants et formateurs, toutes disciplines</td></tr>
-          <tr><th>Organisation</th><td>Cours, puis modules d'activités</td></tr>
-          <tr><th>Ressource associée</th><td>Dossier « Des tourbières du Bassin du Congo aux ODD »</td></tr>
-        </table>
-      </div>
-    </div>
-    <p class="texte" style="margin-top:26px">Une formation vous intéresse pour votre établissement ou votre équipe ? <a href="#contact">Écrivez à l'association</a> pour en parler.</p>
   </div>
 </section>
 
@@ -560,7 +563,7 @@ var POSTS = [{"id": 1, "pillar": "Série pays", "pays": "République du Congo", 
     var x=b.nextElementSibling;var v=x.classList.toggle('ouverte');b.textContent=v?'Masquer la réponse':'Voir la réponse';});
 
   // Routage
-  var SOUS={association:'qui-sommes-nous','qui-sommes-nous':'qui-sommes-nous',actions:'actions',formations:'actions',agenda:'actions'};
+  var SOUS={association:'qui-sommes-nous','qui-sommes-nous':'qui-sommes-nous',actions:'actions',formations:'formations',agenda:'actions'};
   var vues=[].slice.call(document.querySelectorAll('.vue'));
   var liens=[].slice.call(document.querySelectorAll('nav a'));
   var menu=document.getElementById('menu');
@@ -575,7 +578,7 @@ var POSTS = [{"id": 1, "pillar": "Série pays", "pays": "République du Congo", 
         montrer('rubrique');rendreRubrique();cible=document.getElementById(h);actif=r.id;}
       else {montrer('accueil');actif='accueil';}
     }
-    else if(SOUS[h]){var v=SOUS[h];montrer(v); if(h==='formations'||h==='agenda') cible=document.getElementById(h); actif=v;}
+    else if(SOUS[h]){var v=SOUS[h];montrer(v); if(h==='agenda') cible=document.getElementById(h); actif=v;}
     else if(h==='contact'){montrer('contact');}
     else {montrer('accueil');actif='accueil';}
     liens.forEach(function(a){a.classList.toggle('actif',a.getAttribute('href')==='#'+actif)});
