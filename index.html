@@ -8,8 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400&family=Quicksand:wght@400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bleu:#1F5FA8; --bleu-fonce:#163F70; --vert:#2E7D4F; --encre:#1E2A33;
-  --gris:#5A6670; --fond:#FFFFFF; --fond-doux:#F6F7F5; --ligne:#E2E6E3;
+  --bleu:#1F5FA8; --bleu-fonce:#163F70; --vert:#2E7D4F; --encre:#121A21;
+  --gris:#39434B; --fond:#FFFFFF; --fond-doux:#F6F7F5; --ligne:#E2E6E3;
   --odd:linear-gradient(90deg,#E5243B 0 5.88%,#DDA63A 0 11.76%,#4C9F38 0 17.65%,#C5192D 0 23.53%,#FF3A21 0 29.41%,#26BDE2 0 35.29%,#FCC30B 0 41.18%,#A21942 0 47.06%,#FD6925 0 52.94%,#DD1367 0 58.82%,#FD9D24 0 64.71%,#BF8B2E 0 70.59%,#3F7E44 0 76.47%,#0A97D9 0 82.35%,#56C02B 0 88.24%,#00689D 0 94.12%,#19486A 0 100%);
   --roue:conic-gradient(#E5243B 0deg 21.2deg,#DDA63A 21.2deg 42.4deg,#4C9F38 42.4deg 63.5deg,#C5192D 63.5deg 84.7deg,#FF3A21 84.7deg 105.9deg,#26BDE2 105.9deg 127.1deg,#FCC30B 127.1deg 148.2deg,#A21942 148.2deg 169.4deg,#FD6925 169.4deg 190.6deg,#DD1367 190.6deg 211.8deg,#FD9D24 211.8deg 232.9deg,#BF8B2E 232.9deg 254.1deg,#3F7E44 254.1deg 275.3deg,#0A97D9 275.3deg 296.5deg,#56C02B 296.5deg 317.6deg,#00689D 317.6deg 338.8deg,#19486A 338.8deg 360deg);
 }
@@ -56,7 +56,7 @@ nav a:hover,nav a.actif{color:var(--bleu);border-bottom-color:var(--bleu)}
 .hero .logo{margin:0 0 28px;font-size:clamp(72px,13vw,130px)}
 .carte-hero{margin:24px auto 0;max-width:820px}
 .carte-hero svg{display:block;width:100%;height:auto}
-.source-carte{font-size:11px;color:#8A949C;text-align:center;margin:58px auto 0;max-width:900px}
+.source-carte{font-size:12px;color:#39434B;text-align:center;margin:58px auto 0;max-width:900px}
 @media (max-width:720px){.carte-hero svg .lbl{font-size:21px}.cadre{padding-left:8px;padding-right:8px}}
 .hero .cadre{padding-top:44px}
 .nom-complet{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(15px,2.2vw,20px);letter-spacing:.08em;color:#333;margin:26px 0 0}
@@ -81,7 +81,7 @@ section.bloc h2{font-size:clamp(28px,4vw,38px);color:var(--bleu);margin-bottom:2
 .carte::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--bleu)}
 .carte.v::before{background:var(--vert)}
 .carte h3{font-size:20px;color:var(--encre);margin-bottom:10px}
-.carte p{font-size:14px;color:#3A4650;text-align:left}
+.carte p{font-size:14px;color:#1E272E;text-align:left}
 .etiquette{display:inline-block;font-family:'Jost',sans-serif;font-size:12px;font-weight:500;padding:2px 10px;border-radius:999px;background:#E8F0F9;color:var(--bleu);margin:0 6px 8px 0}
 .etiquette.v{background:#E6F2EB;color:var(--vert)}
 
@@ -104,10 +104,10 @@ section.bloc h2{font-size:clamp(28px,4vw,38px);color:var(--bleu);margin-bottom:2
 .filtre .pt{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:1px}
 select.pays-sel{font-family:'Jost',sans-serif;font-size:14px;padding:6px 12px;border-radius:999px;border:1.5px solid var(--ligne);background:#fff;color:var(--encre);margin-left:auto}
 .rub{display:inline-block;font-family:'Jost',sans-serif;font-size:12px;font-weight:500;padding:2px 10px;border-radius:999px;color:#fff;margin:0 6px 8px 0}
-.meta{font-size:12px;color:var(--gris);margin-bottom:6px}
+.meta{font-size:13px;color:var(--gris);margin-bottom:6px}
 .pub h3{font-size:18px}
 .pub p{white-space:pre-line}
-.pub .source{font-size:12px;color:var(--gris);margin:0}
+.pub .source{font-size:13px;color:var(--gris);margin:0}
 .reponse-btn{font-family:'Jost',sans-serif;font-size:13px;padding:4px 12px;border-radius:999px;border:1.5px solid var(--vert);color:var(--vert);background:#fff;cursor:pointer;margin-bottom:10px}
 .lire-article{display:inline-block;margin:4px 0 10px;font-family:'Jost',sans-serif;font-size:15px;font-weight:500;text-decoration:none}
 .article-v{max-width:720px;margin:0 auto}
@@ -175,7 +175,7 @@ th{font-family:'Jost',sans-serif;font-weight:500;color:var(--bleu);width:34%}
 .copie{font-size:12px;padding:3px 10px;border-radius:999px;border:1px solid var(--ligne);background:#fff;cursor:pointer;color:var(--gris)}
 .copie:hover{border-color:var(--bleu);color:var(--bleu)}
 
-footer{background:var(--encre);color:#C9D2D8;font-size:13px}
+footer{background:var(--encre);color:#EEF2F4;font-size:13px}
 footer .wrap{padding:30px 24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
 footer a{color:#fff}
 
