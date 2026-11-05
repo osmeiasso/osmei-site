@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { feature, neighbors } from 'topojson-client';
+import { feature, neighbors, merge } from 'topojson-client';
 import { geoMercator, geoPath, geoCentroid } from 'd3-geo';
 
 const topo = JSON.parse(fs.readFileSync('node_modules/world-atlas/countries-50m.json', 'utf8'));
@@ -38,6 +38,9 @@ let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width
 for (const f of voisins) svg += `<path d="${path(f)}" fill="none" stroke="${BLEU}" stroke-width="1.6" stroke-linejoin="round"/>`;
 // Six pays : contour noir
 for (const f of six) svg += `<path d="${path(f)}" fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>`;
+// Contour extérieur de l'ensemble des six pays, accentué
+const ensemble = merge(topo, geoms.filter(g => SIX[g.properties.name]));
+svg += `<path d="${path(ensemble)}" fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="round"/>`;
 
 const txt = (x, y, lignes, coul, taille, ancre = 'middle') => lignes.map((l, i) =>
   `<text x="${x}" y="${y + i * (taille + 4)}" text-anchor="${ancre}" font-size="${taille}" font-weight="500" fill="${coul}" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`).join('');
@@ -82,7 +85,7 @@ svg += `<text x="${W / 2}" y="${M + BANDE + 66}" text-anchor="middle" font-size=
 svg += `<text x="${W / 2}" y="${M + BANDE + 106}" text-anchor="middle" font-size="26" fill="#000000">Les six pays du massif forestier et leurs voisins</text>`;
 // Légende
 const ly = bas + 36;
-svg += `<line x1="${M + 20}" y1="${ly}" x2="${M + 60}" y2="${ly}" stroke="#000000" stroke-width="3"/>`;
+svg += `<line x1="${M + 20}" y1="${ly}" x2="${M + 60}" y2="${ly}" stroke="#000000" stroke-width="5"/>`;
 svg += `<text x="${M + 72}" y="${ly + 6}" font-size="16" fill="#000000">Les six pays du massif forestier du Bassin du Congo</text>`;
 svg += `<line x1="${M + 20}" y1="${ly + 30}" x2="${M + 60}" y2="${ly + 30}" stroke="${BLEU}" stroke-width="3"/>`;
 svg += `<text x="${M + 72}" y="${ly + 36}" font-size="16" fill="${BLEU}">Les pays frontaliers (frontière terrestre commune)</text>`;
