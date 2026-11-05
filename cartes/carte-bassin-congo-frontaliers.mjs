@@ -76,6 +76,14 @@ for (const f of six) {
     svg += `<defs><marker id="pointe" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#E5243B"/></marker></defs>`;
     svg += `<line x1="${b[0][0] - 44}" y1="${my}" x2="${b[0][0] - 3}" y2="${my}" stroke="#E5243B" stroke-width="3" marker-end="url(#pointe)"/>`;
     svg += txt(b[0][0] - 50, my - 6, ['Guinée', 'équatoriale'], '#000000', 16, 'end');
+    // Île de Bioko : nom et flèche rouge depuis l'étiquette du pays
+    const bioko = polys.find(p => geoCentroid({ type: 'Polygon', coordinates: p })[1] > 3);
+    if (bioko) {
+      const bb = path.bounds({ type: 'Polygon', coordinates: bioko });
+      const bx = (bb[0][0] + bb[1][0]) / 2, byc = (bb[0][1] + bb[1][1]) / 2;
+      svg += `<line x1="${b[0][0] - 56}" y1="${my - 26}" x2="${bx - 2}" y2="${bb[1][1] + 4}" stroke="#E5243B" stroke-width="3" marker-end="url(#pointe)"/>`;
+      svg += `<text x="${bb[0][0] - 8}" y="${byc + 2}" text-anchor="end" font-size="15" font-style="italic" fill="#000000" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">Bioko</text>`;
+    }
     continue;
   }
   const [x, y] = proj(geoCentroid(f));
