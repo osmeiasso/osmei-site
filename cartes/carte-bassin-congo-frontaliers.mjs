@@ -26,8 +26,8 @@ const six = monde.filter(f => SIX[f.properties.name]);
 const voisins = monde.filter(f => voisinsNoms.has(f.properties.name));
 
 const HERO = process.env.HERO === '1';
-const W = HERO ? 900 : 1200, H = HERO ? 940 : 1060, M = HERO ? 0 : 40, BANDE = HERO ? 0 : 20, BLEU = '#1F5FA8';
-const haut = M + BANDE + 140, bas = H - M - BANDE - (HERO ? 80 : 120);
+const W = HERO ? 900 : 1200, H = HERO ? 1080 : 1180, M = HERO ? 0 : 40, BANDE = HERO ? 0 : 20, BLEU = '#1F5FA8';
+const haut = M + BANDE + 140, bas = H - M - BANDE - (HERO ? 220 : 240);
 // Cadrage sur les six pays avec une marge, les voisins sont coupés au bord du cadre
 const proj = geoMercator().fitExtent([[M + (HERO ? 120 : 170), haut + 30], [W - M - (HERO ? 120 : 170), bas - 30]], { type: 'FeatureCollection', features: six });
 proj.clipExtent([[M, haut], [W - M, bas]]);
@@ -63,7 +63,7 @@ for (const f of voisins) {
   svg += txt(c[0] + dx, c[1] + dy, [nom], BLEU, 17);
 }
 // Étiquettes des six pays
-const decal = { 'Cameroun': [0, 40], 'République du Congo': [12, 0], 'République démocratique du Congo': [-10, 10], 'Gabon': [-5, 10] };
+const decal = { 'Cameroun': [0, 8], 'République du Congo': [12, 0], 'République démocratique du Congo': [-10, 10], 'Gabon': [-5, 10] };
 for (const f of six) {
   const nom = SIX[f.properties.name];
   if (nom === 'Guinée équatoriale') {
@@ -99,6 +99,20 @@ for (const f of six) {
   }
   svg += txt(x + dx, y + dy, lignes, '#000000', 17);
 }
+// Capitales des six pays : point vert forêt (coordonnées en degrés, longitude puis latitude)
+const VERT = '#228B22';
+const CAPITALES = [
+  { pays: 'Cameroun', ville: 'Yaoundé', lonlat: [11.502, 3.848], d: [0, 0] },
+  { pays: 'République centrafricaine', ville: 'Bangui', lonlat: [18.558, 4.394], d: [0, 0] },
+  { pays: 'République du Congo', ville: 'Brazzaville', lonlat: [15.283, -4.267], d: [-5, -4] },
+  { pays: 'République démocratique du Congo', ville: 'Kinshasa', lonlat: [15.322, -4.325], d: [5, 4] },
+  { pays: 'Gabon', ville: 'Libreville', lonlat: [9.454, 0.390], d: [0, 0] },
+  { pays: 'Guinée équatoriale', ville: 'Ciudad de la Paz', lonlat: [10.818, 1.588], d: [0, 0] },
+];
+for (const c of CAPITALES) {
+  const [x, y] = proj(c.lonlat);
+  svg += `<circle cx="${x + c.d[0]}" cy="${y + c.d[1]}" r="5.5" fill="${VERT}" stroke="#FFFFFF" stroke-width="1.5"/>`;
+}
 // Océan Atlantique
 {
   const [ox, oy] = proj([6.2, -3.2]);
@@ -115,6 +129,17 @@ svg += `<line x1="${M + 20}" y1="${ly}" x2="${M + 60}" y2="${ly}" stroke="#00000
 svg += `<text x="${M + 72}" y="${ly + 6}" font-size="16" fill="#000000">Les six pays du massif forestier du Bassin du Congo</text>`;
 svg += `<line x1="${M + 20}" y1="${ly + 30}" x2="${M + 60}" y2="${ly + 30}" stroke="${BLEU}" stroke-width="3"/>`;
 svg += `<text x="${M + 72}" y="${ly + 36}" font-size="16" fill="${BLEU}">Les pays frontaliers (frontière terrestre commune)</text>`;
+// Légende des capitales, hors de la carte
+{
+  const cy0 = ly + 74;
+  svg += `<circle cx="${M + 40}" cy="${cy0 - 5}" r="5.5" fill="${VERT}" stroke="#FFFFFF" stroke-width="1.5"/>`;
+  svg += `<text x="${M + 72}" y="${cy0}" font-size="16" font-weight="500" fill="#000000">Capitales</text>`;
+  const colW = (W - 2 * M - 72) / 2;
+  CAPITALES.forEach((c, i) => {
+    const col = i % 2, row = Math.floor(i / 2);
+    svg += `<text x="${M + 72 + col * colW}" y="${cy0 + 26 + row * 24}" font-size="15" fill="#000000">${c.pays}, capitale ${c.ville}</text>`;
+  });
+}
 // Source
 if (!HERO) {
 svg += `<text x="${W - M}" y="${H - M - BANDE - 30}" text-anchor="end" font-size="12" fill="#5A6670">Source : Natural Earth, frontières administratives au 1:50 000 000 (naturalearthdata.com), domaine public.</text>`;
