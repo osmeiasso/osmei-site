@@ -117,7 +117,7 @@ for (const c of CAPITALES) {
 {
   const [ox, oy] = proj([6.2, -3.2]);
   ['Océan', 'Atlantique'].forEach((l, i) => {
-    svg += `<text x="${ox}" y="${oy + i * 22}" text-anchor="middle" font-size="19" font-style="italic" fill="${BLEU}" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`;
+    svg += `<text x="${ox}" y="${oy + i * 30}" text-anchor="middle" font-size="27" font-weight="500" font-style="italic" fill="#0047AB" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`;
   });
 }
 // Titre
