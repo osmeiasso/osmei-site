@@ -99,8 +99,8 @@ for (const f of six) {
   }
   svg += txt(x + dx, y + dy, lignes, '#000000', 17);
 }
-// Capitales des six pays : point vert forêt (coordonnées en degrés, longitude puis latitude)
-const VERT = '#228B22';
+// Capitales des six pays : point orange (coordonnées en degrés, longitude puis latitude)
+const VERT = '#FD6925';
 const CAPITALES = [
   { pays: 'Cameroun', ville: 'Yaoundé', lonlat: [11.502, 3.848], d: [0, 0] },
   { pays: 'République centrafricaine', ville: 'Bangui', lonlat: [18.558, 4.394], d: [0, 0] },
@@ -111,7 +111,7 @@ const CAPITALES = [
 ];
 for (const c of CAPITALES) {
   const [x, y] = proj(c.lonlat);
-  svg += `<circle cx="${x + c.d[0]}" cy="${y + c.d[1]}" r="5.5" fill="${VERT}" stroke="#FFFFFF" stroke-width="1.5"/>`;
+  svg += `<circle cx="${x + c.d[0]}" cy="${y + c.d[1]}" r="6.5" fill="${VERT}" stroke="#FFFFFF" stroke-width="1.5"/>`;
 }
 // Océan Atlantique
 {
@@ -132,7 +132,7 @@ svg += `<text x="${M + 72}" y="${ly + 36}" font-size="16" fill="${BLEU}">Les pay
 // Légende des capitales, hors de la carte
 {
   const cy0 = ly + 74;
-  svg += `<circle cx="${M + 40}" cy="${cy0 - 5}" r="5.5" fill="${VERT}" stroke="#FFFFFF" stroke-width="1.5"/>`;
+  svg += `<circle cx="${M + 40}" cy="${cy0 - 5}" r="6.5" fill="${VERT}" stroke="#FFFFFF" stroke-width="1.5"/>`;
   svg += `<text x="${M + 72}" y="${cy0}" font-size="16" font-weight="500" fill="#000000">Capitales</text>`;
   const colW = (W - 2 * M - 72) / 2;
   CAPITALES.forEach((c, i) => {
