@@ -62,7 +62,7 @@ for (const f of voisins) {
   svg += txt(c[0] + dx, c[1] + dy, [nom], BLEU, 17);
 }
 // Étiquettes des six pays
-const decal = { 'Cameroun': [0, 40], 'République du Congo': [20, 30], 'République démocratique du Congo': [-10, 10], 'Gabon': [-5, 10] };
+const decal = { 'Cameroun': [0, 40], 'République du Congo': [12, 0], 'République démocratique du Congo': [-10, 10], 'Gabon': [-5, 10] };
 for (const f of six) {
   const nom = SIX[f.properties.name];
   if (nom === 'Guinée équatoriale') {
@@ -78,6 +78,12 @@ for (const f of six) {
   const lignes = nom === 'République démocratique du Congo' ? ['République démocratique', 'du Congo']
                : nom === 'République centrafricaine' ? ['République', 'centrafricaine']
                : nom === 'République du Congo' ? ['République', 'du Congo'] : [nom];
+  if (nom === 'République du Congo') {
+    // Pays étroit et allongé : nom écrit le long de son axe, pour ne pas déborder
+    const cx = x + dx, cy = y + dy;
+    svg += `<text x="${cx}" y="${cy}" transform="rotate(-62 ${cx} ${cy})" text-anchor="middle" font-size="15" font-weight="500" fill="#000000" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">République du Congo</text>`;
+    continue;
+  }
   svg += txt(x + dx, y + dy, lignes, '#000000', 17);
 }
 // Titre
