@@ -124,6 +124,11 @@ select.pays-sel{font-family:'Jost',sans-serif;font-size:14px;padding:6px 12px;bo
 .source-def{font-size:12px;color:var(--gris);margin:-6px 0 34px}
 .source-def a{color:var(--gris)}
 
+.sous-nav{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 36px}
+.sous-nav a{font-family:'Jost',sans-serif;font-size:15px;text-decoration:none;color:var(--bleu);border:1.5px solid var(--bleu);border-radius:999px;padding:6px 16px;background:#fff}
+.sous-nav a:hover{background:var(--bleu);color:#fff}
+#actions-ressources{scroll-margin-top:90px}
+
 /* Pays du Bassin du Congo (présentation par fiches, drapeau au-dessus du nom) */
 .titre-section{font-size:clamp(22px,3vw,28px);color:var(--encre);margin:0 0 22px}
 .grille-pays{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
@@ -192,7 +197,6 @@ footer a{color:#fff}
         <li><a href="#actualite-odd">Actualité &amp; ODD</a></li>
         <li><a href="#ludique">Ludique</a></li>
         <li><a href="#qui-sommes-nous">Qui sommes-nous ?</a></li>
-        <li><a href="#formations">Nos formations</a></li>
         <li><a href="#actions">Nos actions</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -309,20 +313,16 @@ footer a{color:#fff}
 </section>
 </div>
 
-<div class="vue" data-vue="formations" hidden>
-<!-- FORMATIONS : rubrique volontairement vide pour l'instant (contenu précédent conservé dans l'historique du dépôt) -->
-<section id="formations" class="bloc">
-  <div class="wrap">
-    <h2>Nos formations</h2>
-  </div>
-</section>
-</div>
-
 <div class="vue" data-vue="actions" hidden>
 <!-- ACTIONS -->
 <section id="actions" class="bloc doux">
   <div class="wrap">
-    <div class="surtitre">Actions</div>
+    <div class="sous-nav" role="navigation" aria-label="Nos actions">
+      <a href="#actions-ressources">Ressources pédagogiques</a>
+      <a href="#formations">Nos formations</a>
+      <a href="#agenda">Agenda</a>
+    </div>
+    <div class="surtitre" id="actions-ressources">Actions</div>
     <h2>Ressources pédagogiques du programme CAP 2030</h2>
     <p class="texte">Sous le programme CAP 2030, l'association conçoit des ressources documentées et sourcées pour enseigner le développement durable, de l'école primaire au lycée.</p>
 
@@ -369,6 +369,14 @@ footer a{color:#fff}
         <p>Pays du Bassin du Congo, actualité des ODD, jeux et métiers de la durabilité : retrouvez chaque publication dans sa rubrique.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- FORMATIONS : sous-rubrique de Nos actions, volontairement vide pour l'instant -->
+<section id="formations" class="bloc">
+  <div class="wrap">
+    <div class="surtitre">Nos actions</div>
+    <h2>Nos formations</h2>
   </div>
 </section>
 
@@ -536,7 +544,7 @@ var POSTS = [{"id": 1, "pillar": "Série pays", "pays": "République du Congo", 
     var x=b.nextElementSibling;var v=x.classList.toggle('ouverte');b.textContent=v?'Masquer la réponse':'Voir la réponse';});
 
   // Routage
-  var SOUS={association:'qui-sommes-nous','qui-sommes-nous':'qui-sommes-nous',actions:'actions',formations:'formations',agenda:'actions'};
+  var SOUS={association:'qui-sommes-nous','qui-sommes-nous':'qui-sommes-nous',actions:'actions','actions-ressources':'actions',formations:'actions',agenda:'actions'};
   var vues=[].slice.call(document.querySelectorAll('.vue'));
   var liens=[].slice.call(document.querySelectorAll('nav a'));
   var menu=document.getElementById('menu');
@@ -551,7 +559,7 @@ var POSTS = [{"id": 1, "pillar": "Série pays", "pays": "République du Congo", 
         montrer('rubrique');rendreRubrique();cible=document.getElementById(h);actif=r.id;}
       else {montrer('accueil');actif='accueil';}
     }
-    else if(SOUS[h]){var v=SOUS[h];montrer(v); if(h==='agenda') cible=document.getElementById(h); actif=v;}
+    else if(SOUS[h]){var v=SOUS[h];montrer(v); if(h!=='actions') cible=document.getElementById(h); actif=v;}
     else if(h==='contact'){montrer('contact');}
     else {montrer('accueil');actif='accueil';}
     liens.forEach(function(a){a.classList.toggle('actif',a.getAttribute('href')==='#'+actif)});
