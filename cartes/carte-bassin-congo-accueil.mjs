@@ -36,7 +36,7 @@ let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role=
 
 `;
 const larg = (W - 2 * M) / 17;
-const Y0 = M + BANDE + 125, Y1 = H - M - BANDE - 30;
+const Y0 = 0, Y1 = H;
 svg += `<defs><clipPath id="zone"><rect x="${M}" y="${Y0}" width="${W - 2 * M}" height="${Y1 - Y0}" rx="6"/></clipPath></defs>`;
 svg += `<rect x="${M}" y="${Y0}" width="${W - 2 * M}" height="${Y1 - Y0}" fill="#FFFFFF" rx="6"/>`;
 svg += `<g clip-path="url(#zone)">`;
