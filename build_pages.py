@@ -23,6 +23,8 @@ def page(html, titre, url, index=True):
     extra = '\n<link rel="canonical" href="%s">' % url
     if not index:
         extra += '\n<meta name="robots" content="noindex">'
+    if url != SITE + '/':
+        html = re.sub(r'\n<meta name="description"[^>]*>', '', html)
     return html.replace('</title>', '</title>' + extra, 1)
 open('index.html', 'w', encoding='utf8').write(page(src, re.search(r'<title>(.*?)</title>', src).group(1), SITE + '/'))
 for slug, t in PAGES.items():
