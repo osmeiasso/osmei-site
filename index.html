@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>OSMEI, Orientation Scolaire, Médiation Éducative et Interculturelle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400&family=Quicksand:wght@400&display=swap" rel="stylesheet">
@@ -673,8 +677,18 @@ var PUBLIES = [];
   var liens=[].slice.call(document.querySelectorAll('nav a'));
   var menu=document.getElementById('menu');
   function montrer(nom){vues.forEach(function(v){v.hidden=v.getAttribute('data-vue')!==nom})}
+  var RACINE='Accueil';
+  var TITRES={'bassin-du-congo':null,'actualite-odd':'Actualité & ODD','metiers-education':'Métiers et éducation orientés développement durable','ludique':'Ludique','qui-sommes-nous':'Qui sommes-nous ?','actions':'Nos actions','actions-ressources':'Ressources pédagogiques','formations':'Nos formations','agenda':'Agenda','contact':'Contact','don':'Faire un don','recherche':'Rechercher'};
+  var TITRE0=document.title.replace(/^.*\| /,'')===document.title?document.title:'OSMEI, Orientation Scolaire, Médiation Éducative et Interculturelle';
+  var REEL=/(^|\.)osmei\.fr$/.test(location.hostname);
+  function chemin(id){return id==='bassin-du-congo'?'/':'/'+id+'/'}
+  function routeCourante(){
+    var h=location.hash.slice(1); if(h) return h==='association'?'qui-sommes-nous':h;
+    if(REEL){var s=location.pathname.replace(/^\/+|\/+$/g,'').split('/')[0]; if(s&&TITRES.hasOwnProperty(s)) return s;}
+    return 'bassin-du-congo';
+  }
   function router(){
-    var h=(location.hash||'#bassin-du-congo').slice(1);if(!h||h==='accueil')h='bassin-du-congo';var cible=null, actif=h;
+    var h=routeCourante();if(h==='accueil')h='bassin-du-congo';var cible=null, actif=h;
     if(PAR_ID[h]){ if(etat.rub!==PAR_ID[h]){etat.rub=PAR_ID[h];etat.pays='';etat.sous='';etat.n=9;} montrer('rubrique'); rendreRubrique(); }
     else if(/^post-\d+$/.test(h)){
       var p=POSTS.filter(function(x){return 'post-'+x.id===h})[0], r=p&&PAR_NOM[p.pillar];
@@ -695,15 +709,19 @@ var PUBLIES = [];
     else {etat.rub=PAR_ID['bassin-du-congo'];etat.pays='';etat.sous='';etat.n=9;montrer('rubrique');rendreRubrique();actif='bassin-du-congo';}
     liens.forEach(function(a){a.classList.toggle('actif',a.getAttribute('href')==='#'+actif)});
     menu.classList.remove('ouvert');
+    var tp=TITRES.hasOwnProperty(h)?TITRES[h]:TITRES[actif]; document.title=tp?tp+' | OSMEI':TITRE0;
     if(cible){setTimeout(function(){cible.scrollIntoView({behavior:'smooth'})},30)} else window.scrollTo(0,0);
   }
   document.addEventListener('click',function(e){
     var a=e.target.closest('a[href^="#"]'); if(!a) return;
     var h=a.getAttribute('href'); if(h.length<2) return;
     e.preventDefault();
+    var id=h.slice(1); if(id==='association') id='qui-sommes-nous';
+    if(REEL&&TITRES.hasOwnProperty(id)){ if(location.pathname!==chemin(id)||location.hash) history.pushState(null,'',chemin(id)); router(); return; }
     if(location.hash===h) router(); else location.hash=h;
   });
   window.addEventListener('hashchange',router);
+  window.addEventListener('popstate',router);
   document.getElementById('burger').addEventListener('click',function(){menu.classList.toggle('ouvert')});
   document.querySelectorAll('.copie').forEach(function(b){
     b.addEventListener('click',function(){
