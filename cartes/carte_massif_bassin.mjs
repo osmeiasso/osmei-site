@@ -17,7 +17,7 @@ const FR = { 'Nigeria': 'Nigeria', 'Chad': 'Tchad', 'S. Sudan': 'Soudan du Sud',
   'Zimbabwe': 'Zimbabwe', 'Niger': 'Niger', 'Benin': 'Bénin', 'Somalia': 'Somalie', 'Libya':'Libye','Togo':'Togo','Ghana':'Ghana','Burkina Faso':'Burkina Faso' };
 
 const W = 1200, H = 1480, M = 40, BANDE = 20;
-const VERT = '#3F7E44', BLEU = '#6A3D9A', GRIS = '#9AA3AA', EAU = '#0A6FB8';
+const VERT = '#000000', BLEU = '#6A3D9A', GRIS = '#9AA3AA', EAU = '#0A6FB8';
 const haut = M + BANDE + 150, bas = H - M - BANDE - 290;
 const six = monde.filter(f => SIX[f.properties.name]);
 const proj = geoMercator().fitExtent([[M + 60, haut + 25], [W - M - 60, bas - 35]],
@@ -79,7 +79,7 @@ const oc = proj([6.0, -6.5]); svg += txt(oc[0], oc[1], ['Océan', 'Atlantique'],
 // Légende
 let ly = bas + 45;
 svg += `<line x1="${M + 20}" y1="${ly}" x2="${M + 90}" y2="${ly}" stroke="${VERT}" stroke-width="6"/>`;
-svg += `<text x="${M + 105}" y="${ly + 6}" font-size="20" fill="#000">Massif forestier du Bassin du Congo : les six pays (contour extérieur)</text>`;
+svg += `<text x="${M + 105}" y="${ly + 6}" font-size="20" fill="#000">Bassin du Congo : ensemble des six pays du massif forestier (contour extérieur)</text>`;
 ly += 42;
 svg += `<rect x="${M + 20}" y="${ly - 12}" width="70" height="24" fill="${BLEU}" fill-opacity="0.10"/><line x1="${M + 20}" y1="${ly}" x2="${M + 90}" y2="${ly}" stroke="${BLEU}" stroke-width="4" stroke-dasharray="14 7"/>`;
 svg += `<text x="${M + 105}" y="${ly + 6}" font-size="20" fill="#000">Bassin du fleuve Congo : territoire dont les eaux s'écoulent vers le fleuve</text>`;
