@@ -26,7 +26,7 @@ const six = monde.filter(f => SIX[f.properties.name]);
 const voisins = monde.filter(f => voisinsNoms.has(f.properties.name));
 
 const HERO = process.env.HERO === '1';
-const W = HERO ? 900 : 1200, H = HERO ? 1040 : 1180, M = HERO ? 0 : 40, BANDE = HERO ? 0 : 20, BLEU = '#8A949C', VERT_BC = '#000000';
+const W = HERO ? 900 : 1200, H = HERO ? 1040 : 1180, M = HERO ? 0 : 40, BANDE = HERO ? 0 : 20, BLEU = '#8A949C', VERT_BC = '#3F7E44';
 const haut = M + BANDE + 140, bas = H - M - BANDE - (HERO ? 180 : 240);
 // Cadrage sur les six pays avec une marge, les voisins sont coupés au bord du cadre
 const proj = geoMercator().fitExtent([[M + (HERO ? 120 : 170), haut + 30], [W - M - (HERO ? 120 : 170), bas - 30]], { type: 'FeatureCollection', features: six });
