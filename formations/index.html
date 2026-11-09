@@ -559,7 +559,6 @@ var PUBLIES = [];
     x+='<div class="meta">'+esc(dateFr(p.date))+(p.pays&&p.pays.indexOf('Bassin')!==0?' · '+esc(p.pays):'')+(p.sous?' · '+esc(p.sous):'')+'</div>';
     x+='<p class="chapeau">'+esc(a.chapeau)+'</p>';
     a.parties.forEach(function(s){x+='<h2>'+esc(s.question)+'</h2>'+s.texte.split(/\n\n+/).map(function(t){var m=t.match(/^\[\[carte:(\w+)\]\]$/);if(m&&CARTES_ART[m[1]])return figureCarte(m[1]);return '<p>'+esc(t)+'</p>'}).join('')});
-    x+='<p class="signature">L\'équipe <span class="logo" role="img" aria-label="OSMEI"><span class="o">O</span>S<span class="m">M</span>E<span class="i">I</span></span></p>';
     x+='<div class="retenir"><b>À retenir</b><ul>'+a.retenir.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul></div>';
     x+='<div class="sources"><b>Sources</b><ul>'+a.sources.map(function(s){return '<li>'+(s.url?'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.titre)+'</a>':esc(s.titre))+'</li>'}).join('')+'</ul></div>';
     document.getElementById('article-corps').innerHTML=x;
