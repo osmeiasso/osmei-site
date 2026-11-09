@@ -31,8 +31,9 @@ const six = monde.filter(f => SIX[f.properties.name]);
 const voisins = monde.filter(f => voisinsNoms.has(f.properties.name));
 
 const HERO = process.env.HERO === '1';
-const W = HERO ? 900 : 1200, H = HERO ? 1080 : 1260, M = HERO ? 0 : 40, BANDE = HERO ? 0 : 20, BLEU = '#8A949C';
-const haut = M + BANDE + 140, bas = H - M - BANDE - (HERO ? 220 : 320);
+const DOC = process.env.DOC === '1';
+const W = HERO ? 900 : 1200, H = HERO ? 1080 : (DOC ? 1080 : 1260), M = HERO ? 0 : 40, BANDE = HERO ? 0 : 20, BLEU = '#8A949C';
+const haut = M + BANDE + (DOC ? 10 : 140), bas = H - M - BANDE - (HERO ? 220 : (DOC ? 280 : 320));
 // Cadrage sur les six pays avec une marge, les voisins sont coupés au bord du cadre
 const proj = geoMercator().fitExtent([[M + (HERO ? 120 : 170), haut + 30], [W - M - (HERO ? 120 : 170), bas - 30]], { type: 'FeatureCollection', features: THEME === 'fleuve' ? [...six, bassin] : six });
 proj.clipExtent([[M, haut], [W - M, bas]]);
@@ -61,7 +62,7 @@ if (THEME === 'fleuve') {
   svg += `<path d="${path(fleuve)}" fill="none" stroke="${EAU}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
 }
 const txt = (x, y, lignes, coul, taille, ancre = 'middle') => lignes.map((l, i) =>
-  `<text class="lbl" x="${x}" y="${y + i * (taille + 4)}" text-anchor="${ancre}" font-size="${taille}" font-weight="500" fill="${coul}" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`).join('');
+  `<text class="lbl" x="${x}" y="${y + i * (taille + 4)}" text-anchor="${ancre}" font-size="${taille}" font-weight="500" fill="#000000" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`).join('');
 
 // Étiquettes des pays frontaliers, au centre de leur partie visible
 const decalV = { 'Tanzanie': [-20, 0], 'Burundi': [-34, 6], 'Rwanda': [-30, -4], 'Ouganda': [0, 10], 'Nigeria': [0, 10], 'Angola': [-40, 0], 'Zambie': [80, 5], 'Soudan': [0, 0] };
@@ -132,7 +133,7 @@ for (const c of CAPITALES) {
 }
 // Toponymie du thème
 const top = (lonlat, lignes, coul, taille, dx = 0, dy = 0, ancre = 'middle', ital = true) => { const [x, y] = proj(lonlat);
-  return lignes.map((l, i) => `<text x="${x + dx}" y="${y + dy + i * (taille + 3)}" text-anchor="${ancre}" font-size="${taille}" font-weight="600" ${ital ? 'font-style="italic"' : ''} fill="${coul}" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`).join(''); };
+  return lignes.map((l, i) => `<text x="${x + dx}" y="${y + dy + i * (taille + 3)}" text-anchor="${ancre}" font-size="${taille}" font-weight="600" ${ital ? 'font-style="italic"' : ''} fill="#000000" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`).join(''); };
 if (THEME === 'foret') {
   svg += top([29.3, -0.5], ['Forêts de montagne', 'du rift albertin'], VFORET, 14, 150, -2, 'start');
   svg += top([10.6, 6.3], ['Forêts de montagne', 'du Cameroun'], VFORET, 14, -20, -30, 'end');
@@ -151,12 +152,14 @@ if (THEME === 'fleuve') {
 {
   const [ox, oy] = proj([6.2, -3.2]);
   ['Océan', 'Atlantique'].forEach((l, i) => {
-    svg += `<text x="${ox}" y="${oy + i * 30}" text-anchor="middle" font-size="27" font-weight="500" font-style="italic" fill="#0047AB" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`;
+    svg += `<text x="${ox}" y="${oy + i * 30}" text-anchor="middle" font-size="27" font-weight="500" font-style="italic" fill="#000000" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`;
   });
 }
 // Titre
+if (!DOC) {
 svg += `<text x="${W / 2}" y="${M + BANDE + 66}" text-anchor="middle" font-size="50" font-weight="500" fill="#000000">Le Bassin du Congo</text>`;
 svg += `<text x="${W / 2}" y="${M + BANDE + 106}" text-anchor="middle" font-size="26" fill="#000000">${THEME === 'foret' ? 'Le massif forestier et les forêts de montagne' : 'Le bassin du fleuve Congo et le fleuve'}</text>`;
+}
 // Légende
 const ly = bas + 36, P = 30;
 const L = [
@@ -168,20 +171,29 @@ const L = [
   [`<line x1="${M + 20}" y1="Y" x2="${M + 60}" y2="Y" stroke="${VIOLET}" stroke-width="3.5"/>`, 'Bassin du fleuve Congo (territoire dont les eaux s\'écoulent vers le fleuve)'],
   [`<line x1="${M + 20}" y1="Y" x2="${M + 60}" y2="Y" stroke="${EAU}" stroke-width="4"/><circle cx="${M + 60}" cy="Y" r="5" fill="${EAU}"/>`, 'Fleuve Congo, de sa source (Lualaba) à l\'océan Atlantique']]),
 ];
-L.forEach(([sym, t], i) => { const y = ly + i * P; svg += sym.replace(/Y0/g, y - 9).replace(/"Y"/g, `"${y}"`); svg += `<text x="${M + 72}" y="${y + 6}" font-size="16" fill="#000000">${t}</text>`; });
-// Légende des capitales, hors de la carte
+const wrap = (t, n) => { const w = t.split(' '), out = ['']; w.forEach(m => { const c = out[out.length - 1]; if (c && !/^[:;!?»]$/.test(m) && (c + ' ' + m).length > n) out.push(m); else out[out.length - 1] = c ? c + ' ' + m : m; }); return out; };
+{ let y = ly; const LH = 22;
+  L.forEach(([sym, t]) => { const lignes = wrap(t, 44);
+    svg += sym.replace(/Y0/g, y - 9).replace(/"Y"/g, `"${y}"`);
+    lignes.forEach((l, k) => { svg += `<text x="${M + 72}" y="${y + 6 + k * LH}" font-size="18" fill="#000000">${l}</text>`; });
+    y += lignes.length * LH + 12; });
+}
+// Légende des capitales, bloc de droite
 {
-  const cy0 = ly + L.length * P + 20;
-  svg += `<circle cx="${M + 40}" cy="${cy0 - 5}" r="6.5" fill="${VERT}" stroke="#FFFFFF" stroke-width="1.5"/>`;
-  svg += `<text x="${M + 72}" y="${cy0}" font-size="16" font-weight="500" fill="#000000">Capitales</text>`;
-  const colW = (W - 2 * M - 72) / 2;
+  const x0 = M + (W - 2 * M) / 2 + 20, cy0 = ly + 6;
+  svg += `<circle cx="${x0 + 10}" cy="${cy0 - 6}" r="7" fill="${VERT}" stroke="#FFFFFF" stroke-width="1.5"/>`;
+  svg += `<text x="${x0 + 30}" y="${cy0}" font-size="18" font-weight="500" fill="#000000">Capitales</text>`;
   CAPITALES.forEach((c, i) => {
-    const col = i % 2, row = Math.floor(i / 2);
-    svg += `<text x="${M + 72 + col * colW}" y="${cy0 + 26 + row * 24}" font-size="15" fill="#000000">${c.pays}, capitale ${c.ville}</text>`;
+    svg += `<text x="${x0 + 30}" y="${cy0 + 28 + i * 24}" font-size="17" fill="#000000">${c.pays}, capitale ${c.ville}</text>`;
   });
 }
 // Source
-if (!HERO) {
+if (DOC) {
+  const x0 = M + (W - 2 * M) / 2 + 50;
+  const src = (THEME === 'foret' ? 'Forêts : WWF, Terrestrial Ecoregions of the World (Olson et al., 2001). ' : 'Bassin du fleuve : GRDC (2020), Major River Basins of the World, BfG, Coblence. Fleuve : Natural Earth 1:10 000 000. ') + 'Frontières : Natural Earth 1:50 000 000, domaine public ; world-atlas 2.0 (M. Bostock, licence ISC).';
+  wrap(src, 80).forEach((l, k) => { svg += `<text x="${x0}" y="${ly + 186 + k * 16}" font-size="12" fill="#000000">${l}</text>`; });
+}
+if (!HERO && !DOC) {
 svg += `<text x="${W - M}" y="${H - M - BANDE - 30}" text-anchor="end" font-size="12" fill="#000000">Source : Natural Earth, frontières administratives au 1:50 000 000 (naturalearthdata.com), domaine public.</text>`;
 svg += `<text x="${W - M}" y="${H - M - BANDE - 12}" text-anchor="end" font-size="12" fill="#000000">Données mises en forme par world-atlas 2.0 (M. Bostock, licence ISC).</text>`;
 svg += `<text x="${W - M}" y="${H - M - BANDE - 48}" text-anchor="end" font-size="12" fill="#000000">${THEME === 'foret' ? 'Forêts : WWF, Terrestrial Ecoregions of the World (Olson et al., 2001).' : 'Bassin du fleuve : GRDC (2020), Major River Basins of the World, BfG, Coblence. Fleuve : Natural Earth 1:10 000 000.'}</text>`;
@@ -196,5 +208,5 @@ ODD.forEach((c, i) => {
 });
 }
 svg += `</svg>`;
-fs.writeFileSync('/home/claude/essai/carte-bassin-congo-' + THEME + '.svg', svg);
+fs.writeFileSync('/home/claude/essai/carte-bassin-congo-' + THEME + (DOC ? '-doc' : '') + '.svg', svg);
 console.log('ok', [...voisinsNoms].map(n => FR[n]).join(', '));
