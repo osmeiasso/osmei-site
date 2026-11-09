@@ -534,7 +534,7 @@ var PUBLIES = [];
   }
   function dateFr(iso){var p=iso.split('-');var d=new Date(+p[0],+p[1]-1,+p[2]);return JOURS[d.getDay()]+' '+d.getDate()+' '+MOIS[d.getMonth()]+' '+p[0]}
   var today=auj();
-  var publiees=POSTS.filter(function(p){return Array.isArray(window.PUBLIES)?window.PUBLIES.indexOf(p.id)>=0:p.date<today}).sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:b.id-a.id});
+  var publiees=POSTS.filter(function(p){if(p.article&&p.article.statut==='Validé')return true;return Array.isArray(window.PUBLIES)?window.PUBLIES.indexOf(p.id)>=0:p.date<today}).sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:b.id-a.id});
 
   function aArticle(p){var a=p.article;return !!(a&&(a.statut==='Validé'||(window.APERCU_ARTICLES&&a.statut==='Proposé')))}
   function rendreArticle(p){
