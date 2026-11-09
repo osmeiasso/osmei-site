@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { feature } from 'topojson-client';
+import { feature, merge } from 'topojson-client';
 import { geoMercator, geoPath, geoCentroid } from 'd3-geo';
 
 const topo = JSON.parse(fs.readFileSync('node_modules/world-atlas/countries-50m.json', 'utf8'));
@@ -46,6 +46,9 @@ svg += `<g clip-path="url(#zone)">`;
 for (const c of [...cible].sort((a,b)=>(a.nom==='Guinée équatoriale')-(b.nom==='Guinée équatoriale'))) {
   svg += `<path d="${path(c.f)}" fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>`;
 }
+// Contour extérieur du Bassin du Congo (six pays du massif forestier) : vert
+const NOMS6 = new Set(cible.map(c => c.f.properties.name));
+svg += `<path d="${path(merge(topo, topo.objects.countries.geometries.filter(g => NOMS6.has(g.properties.name))))}" fill="none" stroke="#3F7E44" stroke-width="5" stroke-linejoin="round"/>`;
 // Étiquettes
 for (const c of cible) {
   const [x, y] = proj(geoCentroid(c.f));

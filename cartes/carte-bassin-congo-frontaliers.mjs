@@ -26,8 +26,8 @@ const six = monde.filter(f => SIX[f.properties.name]);
 const voisins = monde.filter(f => voisinsNoms.has(f.properties.name));
 
 const HERO = process.env.HERO === '1';
-const W = HERO ? 900 : 1200, H = HERO ? 1080 : 1180, M = HERO ? 0 : 40, BANDE = HERO ? 0 : 20, BLEU = '#1F5FA8';
-const haut = M + BANDE + 140, bas = H - M - BANDE - (HERO ? 220 : 240);
+const W = HERO ? 900 : 1200, H = HERO ? 1040 : 1180, M = HERO ? 0 : 40, BANDE = HERO ? 0 : 20, BLEU = '#8A949C', VERT_BC = '#3F7E44';
+const haut = M + BANDE + 140, bas = H - M - BANDE - (HERO ? 180 : 240);
 // Cadrage sur les six pays avec une marge, les voisins sont coupés au bord du cadre
 const proj = geoMercator().fitExtent([[M + (HERO ? 120 : 170), haut + 30], [W - M - (HERO ? 120 : 170), bas - 30]], { type: 'FeatureCollection', features: six });
 proj.clipExtent([[M, haut], [W - M, bas]]);
@@ -41,7 +41,7 @@ for (const f of voisins) svg += `<path d="${path(f)}" fill="none" stroke="${BLEU
 for (const f of six) svg += `<path d="${path(f)}" fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>`;
 // Contour extérieur de l'ensemble des six pays, accentué
 const ensemble = merge(topo, geoms.filter(g => SIX[g.properties.name]));
-svg += `<path d="${path(ensemble)}" fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="round"/>`;
+svg += `<path d="${path(ensemble)}" fill="none" stroke="${VERT_BC}" stroke-width="5" stroke-linejoin="round"/>`;
 
 const txt = (x, y, lignes, coul, taille, ancre = 'middle') => lignes.map((l, i) =>
   `<text class="lbl" x="${x}" y="${y + i * (taille + 4)}" text-anchor="${ancre}" font-size="${taille}" font-weight="500" fill="${coul}" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">${l}</text>`).join('');
@@ -125,19 +125,20 @@ svg += `<text x="${W / 2}" y="${M + BANDE + 66}" text-anchor="middle" font-size=
 svg += `<text x="${W / 2}" y="${M + BANDE + 106}" text-anchor="middle" font-size="26" fill="#000000">Les six pays du massif forestier et leurs voisins</text>`;
 // Légende
 const ly = bas + 36;
-svg += `<line x1="${M + 20}" y1="${ly}" x2="${M + 60}" y2="${ly}" stroke="#000000" stroke-width="5"/>`;
-svg += `<text x="${M + 72}" y="${ly + 6}" font-size="16" fill="#000000">Les six pays du massif forestier du Bassin du Congo</text>`;
-svg += `<line x1="${M + 20}" y1="${ly + 30}" x2="${M + 60}" y2="${ly + 30}" stroke="${BLEU}" stroke-width="3"/>`;
-svg += `<text x="${M + 72}" y="${ly + 36}" font-size="16" fill="${BLEU}">Les pays frontaliers (frontière terrestre commune)</text>`;
+const FL = HERO ? 12.5 : 16, FC = HERO ? 11.5 : 15, PAS = HERO ? 22 : 30;
+svg += `<line x1="${M + 20}" y1="${ly}" x2="${M + 60}" y2="${ly}" stroke="${VERT_BC}" stroke-width="5"/>`;
+svg += `<text x="${M + 72}" y="${ly + 5}" font-size="${FL}" fill="#000000">Les six pays du massif forestier du Bassin du Congo</text>`;
+svg += `<line x1="${M + 20}" y1="${ly + PAS}" x2="${M + 60}" y2="${ly + PAS}" stroke="${BLEU}" stroke-width="3"/>`;
+svg += `<text x="${M + 72}" y="${ly + PAS + 5}" font-size="${FL}" fill="#000000">Les pays frontaliers (frontière terrestre commune)</text>`;
 // Légende des capitales, hors de la carte
 {
-  const cy0 = ly + 74;
+  const cy0 = ly + (HERO ? 56 : 74);
   svg += `<circle cx="${M + 40}" cy="${cy0 - 5}" r="6.5" fill="${VERT}" stroke="#FFFFFF" stroke-width="1.5"/>`;
-  svg += `<text x="${M + 72}" y="${cy0}" font-size="16" font-weight="500" fill="#000000">Capitales</text>`;
+  svg += `<text x="${M + 72}" y="${cy0}" font-size="${FL}" font-weight="500" fill="#000000">Capitales</text>`;
   const colW = (W - 2 * M - 72) / 2;
   CAPITALES.forEach((c, i) => {
     const col = i % 2, row = Math.floor(i / 2);
-    svg += `<text x="${M + 72 + col * colW}" y="${cy0 + 26 + row * 24}" font-size="15" fill="#000000">${c.pays}, capitale ${c.ville}</text>`;
+    svg += `<text x="${M + 72 + col * colW}" y="${cy0 + (HERO ? 20 : 26) + row * (HERO ? 18 : 24)}" font-size="${FC}" fill="#000000">${c.pays}, capitale ${c.ville}</text>`;
   });
 }
 // Source

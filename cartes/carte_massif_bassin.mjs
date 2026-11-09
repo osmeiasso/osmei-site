@@ -7,7 +7,7 @@ const geoms = topo.objects.countries.geometries;
 const monde = feature(topo, topo.objects.countries).features;
 const bassin = JSON.parse(fs.readFileSync('bassin_congo_grdc.geojson', 'utf8'));
 const fleuve = JSON.parse(fs.readFileSync('fleuve_congo_ne.geojson', 'utf8'));
-const ORANGE = '#FD6925';
+const ORANGE = '#0A6FB8';
 
 const SIX = { 'Cameroon': 'Cameroun', 'Central African Rep.': 'République centrafricaine', 'Congo': 'République du Congo',
   'Dem. Rep. Congo': 'République démocratique du Congo', 'Gabon': 'Gabon', 'Eq. Guinea': 'Guinée équatoriale' };
@@ -17,7 +17,7 @@ const FR = { 'Nigeria': 'Nigeria', 'Chad': 'Tchad', 'S. Sudan': 'Soudan du Sud',
   'Zimbabwe': 'Zimbabwe', 'Niger': 'Niger', 'Benin': 'Bénin', 'Somalia': 'Somalie', 'Libya':'Libye','Togo':'Togo','Ghana':'Ghana','Burkina Faso':'Burkina Faso' };
 
 const W = 1200, H = 1480, M = 40, BANDE = 20;
-const VERT = '#3F7E44', BLEU = '#0A6FB8', GRIS = '#9AA3AA';
+const VERT = '#3F7E44', BLEU = '#6A3D9A', GRIS = '#9AA3AA', EAU = '#0A6FB8';
 const haut = M + BANDE + 150, bas = H - M - BANDE - 290;
 const six = monde.filter(f => SIX[f.properties.name]);
 const proj = geoMercator().fitExtent([[M + 60, haut + 25], [W - M - 60, bas - 35]],
@@ -71,9 +71,9 @@ for (const f of six) {
   const L = nom === 'République démocratique du Congo' ? ['République démocratique', 'du Congo'] : nom === 'République centrafricaine' ? ['République', 'centrafricaine'] : [nom];
   svg += txt(c[0] + dx, c[1] + dy, L, '#000', 18);
 }
-svg += txt(src[0] - 14, src[1] - 22, ['Source du', 'fleuve (Lualaba)'], '#B5470F', 15, 'end', 600);
-svg += txt(emb[0] - 12, emb[1] + 24, ['Embouchure'], '#B5470F', 15, 'end', 600);
-{ const fl = proj([21.0, 1.9]); svg += txt(fl[0], fl[1] - 12, ['Fleuve Congo'], '#B5470F', 17, 'middle', 600).replace(/<text /g, '<text font-style="italic" '); }
+svg += txt(src[0] - 14, src[1] - 22, ['Source du', 'fleuve (Lualaba)'], EAU, 15, 'end', 600);
+svg += txt(emb[0] - 12, emb[1] + 24, ['Embouchure'], EAU, 15, 'end', 600);
+{ const fl = proj([21.0, 1.9]); svg += txt(fl[0], fl[1] - 12, ['Fleuve Congo'], EAU, 17, 'middle', 600).replace(/<text /g, '<text font-style="italic" '); }
 const oc = proj([6.0, -6.5]); svg += txt(oc[0], oc[1], ['Océan', 'Atlantique'], '#0047AB', 26, 'middle', 500).replace(/<text /g, '<text font-style="italic" ');
 
 // Légende
