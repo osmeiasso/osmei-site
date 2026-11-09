@@ -13,6 +13,7 @@ PAGES = {
     'agenda': 'Agenda',
     'contact': 'Contact',
     'don': 'Faire un don',
+    'mentions-legales': 'Mentions légales',
     'recherche': 'Rechercher',
 }
 SANS_INDEX = {'recherche'}

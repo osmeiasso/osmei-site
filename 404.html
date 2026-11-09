@@ -148,6 +148,7 @@ section.bloc .article-v h1{font-size:34px;margin:10px 0 6px}
 section.bloc .article-v h2{font-size:22px;margin:30px 0 10px;color:var(--bleu-fonce)}
 .article-v p{margin:0 0 14px}
 .signature{text-align:right;margin:24px 0 8px;font-size:15px;color:#000}.signature .logo{font-size:22px;vertical-align:-2px;margin-left:4px}
+.ml h3{margin:26px 0 6px;font-size:18px}.ml p{margin:0 0 10px}
 .fig-carte{margin:10px 0 26px}.fig-carte img{width:100%;height:auto;display:block;border:1px solid var(--ligne);border-radius:8px}.fig-carte figcaption{font-size:13px;color:#000;margin-top:6px}
 .article-v .retenir{background:var(--fond-doux);border-left:5px solid var(--bleu);border-radius:0 10px 10px 0;padding:14px 20px;margin:30px 0}
 .article-v .retenir b{font-family:'Jost',sans-serif;font-size:18px;font-weight:500}
@@ -500,13 +501,34 @@ footer a{color:#fff}
 </section>
 </div>
 
+<div class="vue" data-vue="mentions-legales" hidden>
+<section id="mentions-legales" class="bloc">
+  <div class="wrap ml">
+    <div class="surtitre">Mentions légales</div>
+    <h2>Mentions légales</h2>
+    <p class="texte">Conformément à la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN), voici les informations relatives à l'éditeur et à l'hébergeur du site osmei.fr.</p>
+    <h3>Éditeur du site</h3>
+    <p><span class="logo" role="img" aria-label="OSMEI" style="font-size:20px;vertical-align:-2px"><span class="o">O</span>S<span class="m">M</span>E<span class="i">I</span></span> Orientation Scolaire, Médiation Éducative et Interculturelle, association loi 1901, fondée en mai 2015.<br>Numéro RNA : W771012599<br>Contact : <a href="mailto:osmei.org@gmail.com">osmei.org@gmail.com</a></p>
+    <h3>Directrice de la publication</h3>
+    <p>Julie Okimbi, présidente de l'association.</p>
+    <h3>Hébergeur</h3>
+    <p>GitHub, Inc. (service GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Site : <a href="https://pages.github.com" target="_blank" rel="noopener">pages.github.com</a></p>
+    <h3>Propriété intellectuelle</h3>
+    <p>Les textes, visuels et cartes publiés sur ce site sont la propriété de l'association, sauf mention contraire. Toute reproduction doit citer la source et, pour un usage autre que pédagogique et non commercial, faire l'objet d'une autorisation préalable. Les cartes ont été réalisées à partir de données libres : Natural Earth (domaine public), world-atlas (licence ISC), GRDC, Major River Basins of the World (BfG, Coblence) et WWF, Terrestrial Ecoregions of the World (Olson et al., 2001). Les sources des articles sont indiquées à la fin de chacun d'eux.</p>
+    <h3>Données personnelles</h3>
+    <p>Ce site ne comporte ni formulaire, ni compte utilisateur, ni outil de mesure d'audience, et ne dépose pas de cookies. Pour afficher ses polices de caractères, il fait appel au service Google Fonts, qui reçoit l'adresse IP du visiteur. Les messages envoyés à l'adresse de contact servent uniquement à y répondre. Conformément au règlement général sur la protection des données (RGPD), vous pouvez demander l'accès à vos données, leur rectification ou leur suppression en écrivant à <a href="mailto:osmei.org@gmail.com">osmei.org@gmail.com</a>.</p>
+    <h3>Liens externes</h3>
+    <p>Le site renvoie vers des sites extérieurs (sources, réseaux sociaux). L'association n'est pas responsable de leur contenu.</p>
+  </div>
+</section>
+</div>
 </main>
 
 <div class="bande"></div>
 <footer>
   <div class="wrap">
     <span>Orientation Scolaire, Médiation Éducative et Interculturelle · association fondée en mai 2015</span>
-    <span><a href="https://x.com/osmei_org">X</a> · <a href="https://www.instagram.com/osmei.fr/">Instagram</a> · <a href="#contact">Contact</a></span>
+    <span><a href="https://x.com/osmei_org">X</a> · <a href="https://www.instagram.com/osmei.fr/">Instagram</a> · <a href="#contact">Contact</a> · <a href="#mentions-legales">Mentions légales</a></span>
   </div>
 </footer>
 
@@ -698,7 +720,7 @@ var PUBLIES = [];
   var menu=document.getElementById('menu');
   function montrer(nom){vues.forEach(function(v){v.hidden=v.getAttribute('data-vue')!==nom})}
   var RACINE='Accueil';
-  var TITRES={'bassin-du-congo':null,'actualite-odd':'Actualité & ODD','metiers-education':'Métiers et éducation orientés développement durable','ludique':'Ludique','qui-sommes-nous':'Qui sommes-nous ?','actions':'Nos actions','actions-ressources':'Ressources pédagogiques','formations':'Nos formations','agenda':'Agenda','contact':'Contact','don':'Faire un don','recherche':'Rechercher'};
+  var TITRES={'bassin-du-congo':null,'actualite-odd':'Actualité & ODD','metiers-education':'Métiers et éducation orientés développement durable','ludique':'Ludique','qui-sommes-nous':'Qui sommes-nous ?','actions':'Nos actions','actions-ressources':'Ressources pédagogiques','formations':'Nos formations','agenda':'Agenda','contact':'Contact','don':'Faire un don','mentions-legales':'Mentions légales','recherche':'Rechercher'};
   var TITRE0=document.title.replace(/^.*\| /,'')===document.title?document.title:'Le Bassin du Congo : Objectifs de développement durable (17 ODD)';
   var REEL=/(^|\.)osmei\.fr$/.test(location.hostname);
   function chemin(id){return id==='bassin-du-congo'?'/':'/'+id+'/'}
@@ -725,6 +747,7 @@ var PUBLIES = [];
     else if(SOUS[h]){var v=SOUS[h];montrer(v); if(h!=='actions') cible=document.getElementById(h); actif=v;}
     else if(h==='contact'){montrer('contact');}
     else if(h==='don'){montrer('don');}
+    else if(h==='mentions-legales'){montrer('mentions-legales');}
     else if(h==='recherche'){montrer('recherche');setTimeout(function(){document.getElementById('q').focus()},50);}
     else {etat.rub=PAR_ID['bassin-du-congo'];etat.pays='';etat.sous='';etat.n=9;montrer('rubrique');rendreRubrique();actif='bassin-du-congo';}
     liens.forEach(function(a){a.classList.toggle('actif',a.getAttribute('href')==='#'+actif)});
