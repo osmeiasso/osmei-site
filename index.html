@@ -111,6 +111,10 @@ nav a.menu-loupe .loupe-txt{display:none}
 .resultat mark{background:#FFF1C2;color:inherit;padding:0 1px}
 .btn{display:inline-block;font-family:'Jost',sans-serif;font-size:16px;padding:10px 22px;border-radius:999px;text-decoration:none;border:1.5px solid var(--bleu);color:var(--bleu);background:#fff;cursor:pointer}
 .btn.plein{background:var(--bleu);color:#fff}
+.bandeau{background:var(--fond-doux);padding:56px 0 50px;text-align:center}
+.bandeau h1{font-family:'Jost',sans-serif;font-weight:400;font-size:clamp(25px,4.2vw,40px);line-height:1.25;color:var(--bleu-fonce);max-width:820px;margin:0 auto 26px;hyphens:none;text-wrap:balance}
+.bandeau-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.bandeau + section.bloc{padding-top:56px}
 .btn:hover{background:var(--bleu-fonce);border-color:var(--bleu-fonce);color:#fff}
 
 /* Sections */
@@ -300,6 +304,16 @@ footer a{color:#fff}
 
 <!-- RUBRIQUE (vue commune aux 5 rubriques du calendrier) -->
 <div class="vue" data-vue="rubrique" hidden>
+<!-- BANDEAU D'OUVERTURE (accueil uniquement) -->
+<section class="bandeau" id="bandeau" hidden>
+  <div class="wrap">
+    <h1>Comprendre le Bassin du Congo pour orienter, former et agir pour le climat.</h1>
+    <div class="bandeau-actions">
+      <button type="button" class="btn plein" id="vers-bassin">Découvrir le Bassin du Congo</button>
+      <a href="#contact" class="btn">Travailler avec nous</a>
+    </div>
+  </div>
+</section>
 <section class="bloc">
   <div class="wrap">
     <div class="surtitre" id="r-sur">Rubrique</div>
@@ -379,7 +393,7 @@ footer a{color:#fff}
 <section id="association" class="bloc doux">
   <div class="wrap">
     <div class="surtitre">Qui sommes-nous ?</div>
-    <h2>Éduquer, orienter, relier les territoires</h2>
+    <h2>Comprendre le Bassin du Congo pour orienter, former et agir pour le climat.</h2>
     <div class="texte">
       <p>Orientation Scolaire, Médiation Éducative et Interculturelle : notre nom dit nos trois métiers. Nous accompagnons élèves, familles et enseignants, et nous relions l'orientation aux métiers qui préservent le climat, en France et avec le regard tourné vers le Bassin du Congo.</p>
       <p>Toutes les formations proposées par l'association ont une même finalité : l'insertion professionnelle.</p>
@@ -804,6 +818,7 @@ var PUBLIES = [];
       return '<a class="resultat" href="'+e.l+'"><b>'+extrait(e.t,mots).replace(/^… | …$/g,'')+'</b><span>'+extrait(src,mots)+'</span></a>'}).join('')}).join('');
   }
   document.getElementById('q').addEventListener('input',rechercher);
+  document.getElementById('vers-bassin').addEventListener('click',function(){document.querySelector('.bandeau + section.bloc').scrollIntoView({behavior:'smooth',block:'start'})});
 
   // Routage
   var SOUS={comprendre:'comprendre','notre-demarche':'notre-demarche',association:'qui-sommes-nous','qui-sommes-nous':'qui-sommes-nous',actions:'actions','actions-ressources':'actions',formations:'actions',agenda:'actions'};
@@ -849,6 +864,7 @@ var PUBLIES = [];
     else if(h==='mentions-legales'){montrer('mentions-legales');}
     else if(h==='recherche'){montrer('recherche');setTimeout(function(){document.getElementById('q').focus()},50);}
     else {etat.rub=PAR_ID['bassin-du-congo'];etat.pays='';etat.sous='';etat.n=9;montrer('rubrique');rendreRubrique();actif='bassin-du-congo';}
+    document.getElementById('bandeau').hidden=(h!=='bassin-du-congo');
     liens.forEach(function(a){a.classList.toggle('actif',a.getAttribute('href')==='#'+actif)});
     [].slice.call(document.querySelectorAll('nav li.deroulant')).forEach(function(li){var p=li.querySelector('a');if(li.querySelector('.sous-menu a.actif'))p.classList.add('actif')});
     menu.classList.remove('ouvert');
