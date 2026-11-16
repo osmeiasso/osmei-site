@@ -375,31 +375,6 @@ footer a{color:#fff;display:inline-block;padding:6px 4px;min-width:24px;text-ali
     </div>
   </div>
 </section>
-<section id="inspirent" class="inspirent-accueil" hidden>
-  <div class="wrap">
-    <h2>Ils nous inspirent&nbsp;!</h2>
-    <p class="texte">Deux lauréats africains du prix Nobel de la paix éclairent notre démarche&nbsp;: l'un a fait de l'éducation une arme pour changer le monde, l'autre a relié la préservation de l'environnement, la démocratie et la paix.</p>
-    <figure class="photo-inspirent">
-      <img src="/images/mandela-maathai-2005.jpg" alt="Nelson Mandela, assis, serre la main de Wangari Maathai, debout, sur une scène." width="300" height="241" loading="lazy">
-      <figcaption>L'ancien président sud-africain Nelson Mandela serre la main de Wangari Maathai à Johannesburg en 2005. Photo&nbsp;: Alexander Joe (AFP/Archives)</figcaption>
-    </figure>
-    <div class="inspirent">
-      <article class="inspire">
-        <h4>Nelson Mandela</h4>
-        <p class="nobel">Prix Nobel de la paix 1993</p>
-        <blockquote>«&nbsp;L'éducation est l'arme la plus puissante que nous puissions utiliser pour changer le monde.&nbsp;»</blockquote>
-        <p class="src">Discours de lancement de Mindset Network, 16 juillet 2003 (traduction OSMEI). Source&nbsp;: <a href="https://archive.nelsonmandela.org/index.php/za-com-mr-s-909" target="_blank" rel="noopener">archives de la Fondation Nelson Mandela</a>.</p>
-      </article>
-      <article class="inspire">
-        <h4>Wangari Muta Maathai</h4>
-        <p class="nobel">Prix Nobel de la paix 2004</p>
-        <blockquote>«&nbsp;Reconnaître que le développement durable, la démocratie et la paix sont indissociables est une idée dont le temps est venu.&nbsp;»</blockquote>
-        <p class="src">Conférence Nobel, Oslo, 10 décembre 2004 (traduction OSMEI). Source&nbsp;: <a href="https://www.nobelprize.org/prizes/peace/2004/maathai/lecture/" target="_blank" rel="noopener">NobelPrize.org</a>.</p>
-      </article>
-    </div>
-    <p class="texte lien-inspirent">Dans cette même conférence, Wangari Maathai disait rejoindre ses pairs africains lauréats du prix Nobel de la paix, au premier rang desquels Nelson Mandela.</p>
-  </div>
-</section>
 <section class="bloc">
   <div class="wrap">
     <div class="surtitre" id="r-sur"></div>
@@ -522,7 +497,36 @@ footer a{color:#fff;display:inline-block;padding:6px 4px;min-width:24px;text-ali
       </div>
     </div>
 
-    <h3 class="titre-section" style="margin-top:44px">La présidente-fondatrice</h3>
+  </div>
+</section>
+<section id="inspirent" class="inspirent-accueil">
+  <div class="wrap">
+    <h2>Ils nous inspirent&nbsp;!</h2>
+    <p class="texte">Deux lauréats africains du prix Nobel de la paix éclairent notre démarche&nbsp;: l'un a fait de l'éducation une arme pour changer le monde, l'autre a relié la préservation de l'environnement, la démocratie et la paix.</p>
+    <figure class="photo-inspirent">
+      <img src="/images/mandela-maathai-2005.jpg" alt="Nelson Mandela, assis, serre la main de Wangari Maathai, debout, sur une scène." width="300" height="241" loading="lazy">
+      <figcaption>L'ancien président sud-africain Nelson Mandela serre la main de Wangari Maathai à Johannesburg en 2005. Photo&nbsp;: Alexander Joe (AFP/Archives)</figcaption>
+    </figure>
+    <div class="inspirent">
+      <article class="inspire">
+        <h4>Nelson Mandela</h4>
+        <p class="nobel">Prix Nobel de la paix 1993</p>
+        <blockquote>«&nbsp;L'éducation est l'arme la plus puissante que nous puissions utiliser pour changer le monde.&nbsp;»</blockquote>
+        <p class="src">Discours de lancement de Mindset Network, 16 juillet 2003 (traduction OSMEI). Source&nbsp;: <a href="https://archive.nelsonmandela.org/index.php/za-com-mr-s-909" target="_blank" rel="noopener">archives de la Fondation Nelson Mandela</a>.</p>
+      </article>
+      <article class="inspire">
+        <h4>Wangari Muta Maathai</h4>
+        <p class="nobel">Prix Nobel de la paix 2004</p>
+        <blockquote>«&nbsp;Reconnaître que le développement durable, la démocratie et la paix sont indissociables est une idée dont le temps est venu.&nbsp;»</blockquote>
+        <p class="src">Conférence Nobel, Oslo, 10 décembre 2004 (traduction OSMEI). Source&nbsp;: <a href="https://www.nobelprize.org/prizes/peace/2004/maathai/lecture/" target="_blank" rel="noopener">NobelPrize.org</a>.</p>
+      </article>
+    </div>
+    <p class="texte lien-inspirent">Dans cette même conférence, Wangari Maathai disait rejoindre ses pairs africains lauréats du prix Nobel de la paix, au premier rang desquels Nelson Mandela.</p>
+  </div>
+</section>
+<section class="bloc doux">
+  <div class="wrap">
+    <h3 class="titre-section" style="margin-top:0">La présidente-fondatrice</h3>
     <div class="carte v" style="margin-top:18px;max-width:760px;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
       <img src="/images/julie-okimbi.png" alt="Julie Okimbi" width="140" height="140" style="width:140px;height:140px;border-radius:50%;flex-shrink:0">
       <div style="flex:1;min-width:240px">
@@ -1047,7 +1051,7 @@ var PUBLIES = [];
     else if(h==='mentions-legales'){montrer('mentions-legales');}
     else if(h==='recherche'){montrer('recherche');setTimeout(function(){document.getElementById('q').focus()},50);}
     else {etat.rub=PAR_ID['bassin-du-congo'];etat.pays='';etat.sous='';etat.n=9;montrer('rubrique');rendreRubrique();actif='bassin-du-congo';}
-    document.getElementById('bandeau').hidden=(h!=='bassin-du-congo');document.getElementById('inspirent').hidden=(h!=='bassin-du-congo');
+    document.getElementById('bandeau').hidden=(h!=='bassin-du-congo');
     [].slice.call(document.querySelectorAll('[data-h1]')).forEach(function(t){t.removeAttribute('role');t.removeAttribute('aria-level');t.removeAttribute('data-h1')});
     var vue=vues.filter(function(v){return !v.hidden})[0];
     if(vue&&![].slice.call(document.querySelectorAll('h1')).some(function(t){return t.offsetParent!==null})){var t2=[].slice.call(vue.querySelectorAll('h2')).filter(function(t){return t.offsetParent!==null})[0];if(t2){t2.setAttribute('role','heading');t2.setAttribute('aria-level','1');t2.setAttribute('data-h1','')}}
