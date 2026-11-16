@@ -5,6 +5,12 @@ SITE = 'https://osmei.fr'
 PAGES = {
     'comprendre': 'Comprendre',
     'climat-biodiversite': 'Climat et biodiversité',
+    'guinee-equatoriale': 'Guinée équatoriale',
+    'gabon': 'Gabon',
+    'republique-centrafricaine': 'République centrafricaine',
+    'republique-du-congo': 'République du Congo',
+    'cameroun': 'Cameroun',
+    'republique-democratique-du-congo': 'République Démocratique du Congo (RDC)',
     'orientation': "S'orienter",
     'ludique': 'Jouer pour apprendre',
     'qui-sommes-nous': 'Qui sommes-nous ?',
