@@ -131,6 +131,7 @@ nav a.menu-loupe .loupe-txt{display:none}
 .btn.plein{background:var(--bleu);color:#fff}
 .res-meta{font-size:13px;color:#56616B;margin:10px 0 6px}
 .res-demande{font-family:'Jost',sans-serif;font-size:15px;font-weight:500}
+.copie-lien{font-size:14px;padding:6px 16px;margin:4px 0 18px}
 .dr-form{margin-top:24px;max-width:860px}
 .dr-grille{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
 .dr-form label{display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--encre)}
@@ -768,6 +769,8 @@ var PUBLIES = [];
     x+=pz?'<a class="retour" href="#'+pz.slug+'">← '+esc(nom(pz))+'</a>':'<a class="retour" href="#'+r.id+'">← '+esc(r.label||r.nom)+'</a>';
     x+='<h1>'+esc(a.titre)+'</h1>';
     x+='<div class="meta">'+esc(dateFr(p.date))+(p.pays&&p.pays.indexOf('Bassin')!==0?' · '+esc(p.pays):'')+(p.sous?' · '+esc(p.sous):'')+'</div>';
+    var lienArt='https://osmei.fr'+(ART_SLUGS[p.id]?'/articles/'+ART_SLUGS[p.id]+'/':'/#article-'+p.id);
+    x+='<button type="button" class="btn copie-lien" data-lien="'+esc(lienArt)+'">Copier le lien de l\'article</button>';
     x+='<p class="chapeau">'+esc(a.chapeau)+'</p>';
     a.parties.forEach(function(s){x+='<h2>'+esc(s.question)+'</h2>'+s.texte.split(/\n\n+/).map(function(t){var m=t.match(/^\[\[carte:(\w+)\]\]$/);if(m&&CARTES_ART[m[1]])return figureCarte(m[1]);return '<p>'+esc(t)+'</p>'}).join('')});
     x+='<div class="retenir"><b>À retenir</b><ul>'+a.retenir.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul></div>';
@@ -1012,6 +1015,9 @@ var PUBLIES = [];
   window.addEventListener('hashchange',router);
   window.addEventListener('popstate',router);
   document.getElementById('burger').addEventListener('click',function(){menu.classList.toggle('ouvert')});
+  document.addEventListener('click',function(e){var b=e.target.closest('.copie-lien');if(!b)return;var t=b.getAttribute('data-lien');
+    function ok(){b.textContent='Lien copié ✓';setTimeout(function(){b.textContent='Copier le lien de l\'article'},2500)}
+    if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,function(){window.prompt('Copiez le lien :',t)});else window.prompt('Copiez le lien :',t);});
   document.querySelectorAll('.copie').forEach(function(b){
     b.addEventListener('click',function(){
       var t=b.getAttribute('data-copie');
