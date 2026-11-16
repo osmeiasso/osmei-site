@@ -360,7 +360,7 @@ footer a{color:#fff}
       <figure class="fig-carte"><img src="https://osmei.fr/cartes/carte-bassin-congo-fleuve.svg" alt="Carte : le bassin du Fleuve Congo et le Fleuve Congo, de sa source à l'océan" loading="lazy"></figure>
       <h3>Le massif forestier du Bassin du Congo</h3>
       <p>Le second est le massif forestier du Bassin du Congo : la grande forêt tropicale humide d'Afrique centrale. Il couvre environ 2 millions de km², pour l'essentiel sur six pays. Le bassin du fleuve est donc plus vaste que la forêt : il englobe aussi des régions qui ne sont pas couvertes de forêt dense.</p>
-      <figure class="fig-carte"><img src="https://osmei.fr/cartes/carte-bassin-congo-foret.svg" alt="Carte : le massif forestier et les forêts de montagne du Bassin du Congo" loading="lazy"></figure>
+      <figure class="fig-carte"><img src="https://osmei.fr/cartes/carte-bassin-congo-foret.svg" alt="Carte : le massif forestier de basse altitude et les forêts de montagne du Bassin du Congo" loading="lazy"></figure>
     </div>
 </div>
     <div id="bloc-pays" hidden>
@@ -735,7 +735,7 @@ var PUBLIES = [];
   var publiees=POSTS.filter(function(p){if(p.article&&p.article.statut==='Validé')return true;return Array.isArray(window.PUBLIES)?window.PUBLIES.indexOf(p.id)>=0:p.date<today}).sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:b.id-a.id});
 
   function aArticle(p){var a=p.article;return !!(a&&(a.statut==='Validé'||(window.APERCU_ARTICLES&&a.statut==='Proposé')))}
-  var CARTES_ART={fleuve:['carte-bassin-congo-fleuve','Le bassin du Fleuve Congo et le Fleuve Congo, de sa source à l\'océan'],foret:['carte-bassin-congo-foret','Le massif forestier du Bassin du Congo et les forêts de montagne']};
+  var CARTES_ART={fleuve:['carte-bassin-congo-fleuve','Le bassin du Fleuve Congo et le Fleuve Congo, de sa source à l\'océan'],foret:['carte-bassin-congo-foret','Le massif forestier de basse altitude et les forêts de montagne du Bassin du Congo']};
   function figureCarte(k){var c=CARTES_ART[k];return '<figure class="fig-carte"><img src="https://osmei.fr/cartes/'+c[0]+'.svg" alt="Carte : '+esc(c[1])+'" loading="lazy"><figcaption>'+esc(c[1])+'</figcaption></figure>'}
   function rendreArticle(p){
     var a=p.article, r=PAR_NOM[p.pillar]||{id:'bassin-du-congo',nom:''};
