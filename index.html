@@ -421,7 +421,7 @@ footer a{color:#fff}
     <div class="sous-nav" role="navigation" aria-label="Agir avec OSMEI">
       <a href="#actions-ressources">Ressources pédagogiques</a>
       <a href="#formations">Nos formations</a>
-      <a href="#agenda">Agenda</a>
+      <!-- <a href="#agenda">Agenda</a> masqué en attendant de vraies dates -->
     </div>
     <div class="surtitre" id="actions-ressources">Actions</div>
     <h2>Ressources pédagogiques du programme CAP 2030</h2>
@@ -482,7 +482,7 @@ footer a{color:#fff}
 </section>
 
 <!-- AGENDA -->
-<section id="agenda" class="bloc doux">
+<section id="agenda" class="bloc doux" hidden>
   <div class="wrap">
     <div class="surtitre">Agenda</div>
     <h2>Prochains rendez-vous</h2>
@@ -741,7 +741,7 @@ var PUBLIES = [];
         L.push({g:'Articles',t:a.titre,x:a.chapeau,plus:a.parties.map(function(s){return s.question+' '+s.texte.replace(/\[\[carte:\w+\]\]/g,'')}).join(' ')+' '+a.retenir.join(' ')+' '+aux,l:'#article-'+p.id});}
       L.push({g:r.label||r.nom||'Publications',t:titre,x:corps,plus:aux,l:'#post-'+p.id});
     });
-    [['association','Qui sommes-nous ?'],['comprendre','Comprendre'],['notre-demarche','Notre démarche'],['actions','Agir avec OSMEI'],['formations','Agir avec OSMEI'],['agenda','Agir avec OSMEI'],['contact','Contact'],['don','Faire un don']].forEach(function(s){
+    [['association','Qui sommes-nous ?'],['comprendre','Comprendre'],['notre-demarche','Notre démarche'],['actions','Agir avec OSMEI'],['formations','Agir avec OSMEI'],['contact','Contact'],['don','Faire un don']].forEach(function(s){
       var sec=document.getElementById(s[0]);if(!sec)return;
       var h2=sec.querySelector('h2');
       var cartes=[].slice.call(sec.querySelectorAll('.carte'));

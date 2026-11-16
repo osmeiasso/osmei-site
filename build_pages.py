@@ -12,7 +12,6 @@ PAGES = {
     'actions': 'Agir avec OSMEI',
     'actions-ressources': 'Ressources pédagogiques',
     'formations': 'Nos formations',
-    'agenda': 'Agenda',
     'contact': 'Contact',
     'don': 'Faire un don',
     'mentions-legales': 'Mentions légales',
