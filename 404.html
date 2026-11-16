@@ -113,6 +113,18 @@ nav li.deroulant:hover>ul.sous-menu,nav li.deroulant:focus-within>ul.sous-menu{d
 .porte .lien{display:block;margin-top:12px;color:var(--c);font-family:'Jost',sans-serif;font-size:14px}
 .regles{max-width:760px;padding-left:20px}
 .regles li{margin-bottom:10px;text-align:justify}
+.inspirent{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;margin:22px 0 10px}
+.inspire{background:#fff;border:1px solid #DCE3EA;border-radius:14px;padding:22px;display:flex;flex-direction:column}
+.inspire .photo{aspect-ratio:4/5;max-width:220px;width:100%;margin:0 auto 16px;border:2px dashed #A9B6C3;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#5B6875;font-size:14px;text-align:center;padding:10px}
+.inspire .photo img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.inspire .credit{font-size:12px;color:#5B6875;text-align:center;margin:-8px 0 14px}
+.inspire h4{font-family:'Jost',sans-serif;font-weight:500;font-size:21px;color:var(--bleu-fonce);margin:0 0 2px;text-align:center}
+.inspire .nobel{font-size:14px;color:var(--vert);text-align:center;margin:0 0 14px}
+.inspire p{text-align:justify;margin:0 0 12px}
+.inspire blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--vert);margin:6px 0 10px;padding-left:14px;border-left:3px solid var(--vert)}
+.inspire .src{font-size:13px;color:#5B6875;margin-top:auto;text-align:left}
+.lien-inspirent{max-width:760px;font-style:italic}
+@media (max-width:600px){.inspire p{text-align:left}}
 @media (max-width:860px){.portes{grid-template-columns:1fr}}
 nav a.menu-loupe{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:28px;min-height:28px}
 nav a.menu-loupe .loupe-txt{display:none}
@@ -421,6 +433,28 @@ footer a{color:#fff;display:inline-block;padding:6px 4px;min-width:24px;text-ali
     <p class="texte">Nous croyons qu'on protège mieux ce que l'on comprend. Nos articles sont un travail de médiation des savoirs : nous rendons lisibles les sources premières, sans les trahir.</p>
     <p class="texte">Notre regard est ancré dans le Bassin du Congo et, plus largement, en Afrique subsaharienne. Nous y voyons des puissances souveraines de la biosphère, dont les forêts, les tourbières et les fleuves rendent au monde entier des services essentiels. Raconter ces territoires avec exactitude, c'est aussi leur rendre la place qui leur revient dans les grands débats sur le climat et la biodiversité.</p>
     <p class="texte">Ces articles s'adressent aux élèves, aux enseignants, aux familles et à toute personne curieuse. Ils servent à documenter, à transmettre et à éclairer les choix, jusqu'à celui d'un métier. Car comprendre le vivant, c'est déjà commencer à le préserver.</p>
+    <h3 style="margin-top:36px">Ils nous inspirent</h3>
+    <p class="texte">Deux lauréats africains du prix Nobel de la paix éclairent notre démarche&nbsp;: l'un a fait de l'éducation une arme pour changer le monde, l'autre a montré que le développement durable, la démocratie et la paix sont indissociables.</p>
+    <div class="inspirent">
+      <article class="inspire">
+        <div class="photo">Photo à venir</div>
+        <h4>Nelson Mandela</h4>
+        <p class="nobel">1918-2013 · Prix Nobel de la paix 1993</p>
+        <p>Prix partagé avec Frederik Willem de Klerk «&nbsp;pour leur action en faveur de la fin pacifique du régime d'apartheid et pour avoir posé les fondements d'une Afrique du Sud nouvelle et démocratique&nbsp;».</p>
+        <p>En 2003, il lance Mindset Network, une organisation à but non lucratif créée pour améliorer l'éducation et la santé en Afrique.</p>
+        <blockquote>«&nbsp;L'éducation est l'arme la plus puissante que nous puissions utiliser pour changer le monde.&nbsp;»</blockquote>
+        <p class="src">Discours de lancement de Mindset Network, 16 juillet 2003 (traduction OSMEI). Source&nbsp;: <a href="https://archive.nelsonmandela.org/index.php/za-com-mr-s-909" target="_blank" rel="noopener">archives de la Fondation Nelson Mandela</a>.</p>
+      </article>
+      <article class="inspire">
+        <div class="photo">Photo à venir</div>
+        <h4>Wangari Muta Maathai</h4>
+        <p class="nobel">1940-2011 · Prix Nobel de la paix 2004</p>
+        <p>Première femme africaine lauréate du prix Nobel de la paix, distinguée «&nbsp;pour sa contribution au développement durable, à la démocratie et à la paix&nbsp;». En 1977, elle fonde au Kenya le Mouvement de la ceinture verte, qui a planté plus de 30&nbsp;millions d'arbres.</p>
+        <blockquote>«&nbsp;Pour aider les communautés à comprendre ces liens, nous avons développé un programme d'éducation citoyenne, au cours duquel chacun identifie ses problèmes, leurs causes et les solutions possibles.&nbsp;»</blockquote>
+        <p class="src">Conférence Nobel, Oslo, 10 décembre 2004 (traduction OSMEI). Source&nbsp;: <a href="https://www.nobelprize.org/prizes/peace/2004/maathai/lecture/" target="_blank" rel="noopener">NobelPrize.org</a>.</p>
+      </article>
+    </div>
+    <p class="texte lien-inspirent">Dans cette même conférence, Wangari Maathai disait rejoindre ses pairs africains lauréats du prix Nobel de la paix, au premier rang desquels Nelson Mandela.</p>
     <h3 style="margin-top:36px">Nos règles de rédaction</h3>
     <ul class="regles">
       <li>Nous partons des sources premières (textes officiels, institutions internationales, travaux de recherche) et chaque source est citée avec son lien.</li>
