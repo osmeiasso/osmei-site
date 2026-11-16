@@ -4,13 +4,12 @@ import os, re, shutil
 SITE = 'https://osmei.fr'
 PAGES = {
     'comprendre': 'Comprendre',
-    'biosphere': 'La biosphère',
-    'climat': 'Le climat',
-    'faune-et-flore': 'La faune et la flore',
-    'forets': 'Les forêts',
-    'fleuves-zones-humides-tourbieres': 'Les fleuves, les zones humides et les tourbières',
-    'sols': 'Les sols',
-    'energie': "L'énergie",
+    'systeme-terre': 'Le système Terre',
+    'atmosphere': 'Atmosphère : le climat',
+    'hydrosphere': 'Hydrosphère : fleuves, zones humides et tourbières',
+    'lithosphere': 'Lithosphère : sols et sous-sol',
+    'biosphere': 'Biosphère : forêts, faune et flore',
+    'societes-humaines': 'Sociétés humaines : agriculture, énergie et gouvernance',
     'guinee-equatoriale': 'Guinée équatoriale',
     'gabon': 'Gabon',
     'republique-centrafricaine': 'République centrafricaine',
@@ -32,7 +31,7 @@ PAGES = {
 }
 SANS_INDEX = {'recherche'}
 # Anciennes adresses : la page charge le site, qui renvoie vers la nouvelle adresse.
-ANCIENNES = {'actualite-odd': 'biosphere', 'climat-biodiversite': 'biosphere', 'metiers-education': 'orientation'}
+ANCIENNES = {'actualite-odd': 'systeme-terre', 'climat-biodiversite': 'systeme-terre', 'metiers-education': 'orientation', 'climat': 'atmosphere', 'faune-et-flore': 'biosphere', 'forets': 'biosphere', 'fleuves-zones-humides-tourbieres': 'hydrosphere', 'sols': 'lithosphere', 'energie': 'societes-humaines'}
 src = open('index.html', encoding='utf8').read()
 def page(html, titre, url, index=True):
     html = re.sub(r'<title>.*?</title>', '<title>%s</title>' % titre, html, count=1)
