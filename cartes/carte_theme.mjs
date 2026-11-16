@@ -121,11 +121,11 @@ for (const f of six) {
 const VERT = '#FD6925';
 const CAPITALES = [
   { pays: 'Cameroun', ville: 'Yaoundé', lonlat: [11.502, 3.848], d: [0, 0] },
-  { pays: 'République centrafricaine', ville: 'Bangui', lonlat: [18.558, 4.394], d: [0, 0] },
-  { pays: 'République du Congo', ville: 'Brazzaville', lonlat: [15.283, -4.267], d: [-5, -4] },
-  { pays: 'République Démocratique du Congo', ville: 'Kinshasa', lonlat: [15.322, -4.325], d: [5, 4] },
   { pays: 'Gabon', ville: 'Libreville', lonlat: [9.454, 0.390], d: [0, 0] },
   { pays: 'Guinée équatoriale', ville: 'Ciudad de la Paz', lonlat: [10.818, 1.588], d: [0, 0] },
+  { pays: 'République centrafricaine', ville: 'Bangui', lonlat: [18.558, 4.394], d: [0, 0] },
+  { pays: 'République Démocratique du Congo', ville: 'Kinshasa', lonlat: [15.322, -4.325], d: [5, 4] },
+  { pays: 'République du Congo', ville: 'Brazzaville', lonlat: [15.283, -4.267], d: [-5, -4] },
 ];
 for (const c of CAPITALES) {
   const [x, y] = proj(c.lonlat);
