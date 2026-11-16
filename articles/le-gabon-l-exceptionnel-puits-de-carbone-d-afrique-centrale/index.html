@@ -1085,6 +1085,24 @@ var PUBLIES = [];
   });
   router();
 })();
+
+/* Typographie française : espace insécable avant : ; ? ! » et après «, pour qu'aucun signe ne tombe seul en début de ligne. Ne change aucun mot. */
+(function(){
+  var NB=' ', EXCLU={SCRIPT:1,STYLE:1,TEXTAREA:1,INPUT:1,CODE:1,PRE:1,svg:1,SVG:1};
+  function corrige(t){return t.replace(/[ \t]+([:;?!»])/g,NB+'$1').replace(/«[ \t]+/g,'«'+NB);}
+  function parcourt(racine){
+    var w=document.createTreeWalker(racine,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      for(var e=n.parentNode;e&&e!==racine.parentNode;e=e.parentNode){if(EXCLU[e.nodeName]||(e.isContentEditable))return NodeFilter.FILTER_REJECT;}
+      return /[ \t][:;?!»]|«[ \t]/.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;}});
+    var l=[],n;while(n=w.nextNode())l.push(n);
+    l.forEach(function(n){var v=corrige(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v;});
+  }
+  function tout(){parcourt(document.body);}
+  tout();
+  var enAttente=false;
+  new MutationObserver(function(){if(enAttente)return;enAttente=true;requestAnimationFrame(function(){enAttente=false;tout();});})
+    .observe(document.body,{childList:true,subtree:true,characterData:true});
+})();
 </script>
 </body>
 </html>
