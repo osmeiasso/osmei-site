@@ -10,7 +10,7 @@ const PAYS = [
   { geo: 'Cameroon',          nom: 'Cameroun',                         odd: 13, coul: '#3F7E44' },
   { geo: 'Central African Rep.', nom: 'République centrafricaine',     odd: 4,  coul: '#C5192D' },
   { geo: 'Congo',             nom: 'République du Congo',              odd: 6,  coul: '#26BDE2' },
-  { geo: 'Dem. Rep. Congo',   nom: 'République démocratique du Congo', odd: 15, coul: '#56C02B' },
+  { geo: 'Dem. Rep. Congo',   nom: 'République Démocratique du Congo', odd: 15, coul: '#56C02B' },
   { geo: 'Gabon',             nom: 'Gabon',                            odd: 17, coul: '#19486A' },
   { geo: 'Eq. Guinea',        nom: 'Guinée équatoriale',               odd: 14, coul: '#0A97D9' },
 ];
@@ -29,7 +29,7 @@ const path = geoPath(proj);
 // Position des étiquettes (ajustements manuels pour la lisibilité)
 const decal = {
   'Cameroun': [0, 40], 'République centrafricaine': [0, 0], 'République du Congo': [20, 30],
-  'République démocratique du Congo': [28, 15], 'Gabon': [-5, 10], 'Guinée équatoriale': [-150, -30],
+  'République Démocratique du Congo': [28, 15], 'Gabon': [-5, 10], 'Guinée équatoriale': [-150, -30],
 };
 
 let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Carte du Bassin du Congo : les six pays du massif forestier" font-family="Jost, Verdana, sans-serif">
@@ -50,7 +50,7 @@ for (const c of [...cible].sort((a,b)=>(a.nom==='Guinée équatoriale')-(b.nom==
 for (const c of cible) {
   const [x, y] = proj(geoCentroid(c.f));
   const [dx, dy] = decal[c.nom] || [0, 0];
-  const lignes = c.nom === 'République démocratique du Congo' ? ['République démocratique', 'du Congo']
+  const lignes = c.nom === 'République Démocratique du Congo' ? ['République Démocratique', 'du Congo']
                : c.nom === 'République centrafricaine' ? ['République', 'centrafricaine']
                : c.nom === 'République du Congo' ? ['République', 'du Congo'] : [c.nom];
   let tx = x + dx, ty = y + dy, ancre = 'middle';

@@ -8,7 +8,7 @@ const monde = feature(topo, topo.objects.countries).features;
 
 const SIX = {
   'Cameroon': 'Cameroun', 'Central African Rep.': 'République centrafricaine', 'Congo': 'République du Congo',
-  'Dem. Rep. Congo': 'République démocratique du Congo', 'Gabon': 'Gabon', 'Eq. Guinea': 'Guinée équatoriale',
+  'Dem. Rep. Congo': 'République Démocratique du Congo', 'Gabon': 'Gabon', 'Eq. Guinea': 'Guinée équatoriale',
 };
 const FR = {
   'Nigeria': 'Nigeria', 'Chad': 'Tchad', 'S. Sudan': 'Soudan du Sud', 'Sudan': 'Soudan', 'Angola': 'Angola',
@@ -63,7 +63,7 @@ for (const f of voisins) {
   svg += txt(c[0] + dx, c[1] + dy, [nom], BLEU, 17);
 }
 // Étiquettes des six pays
-const decal = { 'Cameroun': [0, 8], 'République du Congo': [12, 0], 'République démocratique du Congo': [-10, 10], 'Gabon': [-5, 10] };
+const decal = { 'Cameroun': [0, 8], 'République du Congo': [12, 0], 'République Démocratique du Congo': [-10, 10], 'Gabon': [-5, 10] };
 for (const f of six) {
   const nom = SIX[f.properties.name];
   if (nom === 'Guinée équatoriale') {
@@ -88,7 +88,7 @@ for (const f of six) {
   }
   const [x, y] = proj(geoCentroid(f));
   const [dx, dy] = decal[nom] || [0, 0];
-  const lignes = nom === 'République démocratique du Congo' ? ['République démocratique', 'du Congo']
+  const lignes = nom === 'République Démocratique du Congo' ? ['République Démocratique', 'du Congo']
                : nom === 'République centrafricaine' ? ['République', 'centrafricaine']
                : nom === 'République du Congo' ? ['République', 'du Congo'] : [nom];
   if (nom === 'République du Congo') {
@@ -105,7 +105,7 @@ const CAPITALES = [
   { pays: 'Cameroun', ville: 'Yaoundé', lonlat: [11.502, 3.848], d: [0, 0] },
   { pays: 'République centrafricaine', ville: 'Bangui', lonlat: [18.558, 4.394], d: [0, 0] },
   { pays: 'République du Congo', ville: 'Brazzaville', lonlat: [15.283, -4.267], d: [-5, -4] },
-  { pays: 'République démocratique du Congo', ville: 'Kinshasa', lonlat: [15.322, -4.325], d: [5, 4] },
+  { pays: 'République Démocratique du Congo', ville: 'Kinshasa', lonlat: [15.322, -4.325], d: [5, 4] },
   { pays: 'Gabon', ville: 'Libreville', lonlat: [9.454, 0.390], d: [0, 0] },
   { pays: 'Guinée équatoriale', ville: 'Ciudad de la Paz', lonlat: [10.818, 1.588], d: [0, 0] },
 ];

@@ -10,7 +10,7 @@ const fleuve = JSON.parse(fs.readFileSync('fleuve_congo_ne.geojson', 'utf8'));
 const ORANGE = '#FD6925';
 
 const SIX = { 'Cameroon': 'Cameroun', 'Central African Rep.': 'République centrafricaine', 'Congo': 'République du Congo',
-  'Dem. Rep. Congo': 'République démocratique du Congo', 'Gabon': 'Gabon', 'Eq. Guinea': 'Guinée équatoriale' };
+  'Dem. Rep. Congo': 'République Démocratique du Congo', 'Gabon': 'Gabon', 'Eq. Guinea': 'Guinée équatoriale' };
 const FR = { 'Nigeria': 'Nigeria', 'Chad': 'Tchad', 'S. Sudan': 'Soudan du Sud', 'Sudan': 'Soudan', 'Angola': 'Angola',
   'Zambia': 'Zambie', 'Uganda': 'Ouganda', 'Tanzania': 'Tanzanie', 'Rwanda': 'Rwanda', 'Burundi': 'Burundi', 'Malawi': 'Malawi',
   'Kenya': 'Kenya', 'Ethiopia': 'Éthiopie', 'Namibia': 'Namibie', 'Botswana': 'Botswana', 'Mozambique': 'Mozambique',
@@ -62,13 +62,13 @@ for (const f of visibles) {
   svg += txt(c[0] + dx, c[1] + dy, [nom], '#6B757C', 16, 'middle', 400);
 }
 // Six pays (noir)
-const dec6 = { 'Cameroun': [0, 8], 'République du Congo': [8, 0], 'République démocratique du Congo': [0, 30], 'Gabon': [-4, 8], 'République centrafricaine': [0, 0] };
+const dec6 = { 'Cameroun': [0, 8], 'République du Congo': [8, 0], 'République Démocratique du Congo': [0, 30], 'Gabon': [-4, 8], 'République centrafricaine': [0, 0] };
 for (const f of six) {
   const nom = SIX[f.properties.name];
   if (nom === 'Guinée équatoriale') { const c = proj([10.4, 1.55]); svg += txt(c[0] - 26, c[1] + 4, ['Guinée', 'équatoriale'], '#000', 13, 'end'); continue; }
   const c = path.centroid(f); const [dx, dy] = dec6[nom] || [0, 0];
   if (nom === 'République du Congo') { svg += `<text x="${c[0] + dx}" y="${c[1] + dy}" text-anchor="middle" font-size="14" font-weight="500" fill="#000" stroke="#fff" stroke-width="4" paint-order="stroke" transform="rotate(-62 ${c[0] + dx} ${c[1] + dy})">République du Congo</text>`; continue; }
-  const L = nom === 'République démocratique du Congo' ? ['République démocratique', 'du Congo'] : nom === 'République centrafricaine' ? ['République', 'centrafricaine'] : [nom];
+  const L = nom === 'République Démocratique du Congo' ? ['République Démocratique', 'du Congo'] : nom === 'République centrafricaine' ? ['République', 'centrafricaine'] : [nom];
   svg += txt(c[0] + dx, c[1] + dy, L, '#000', 18);
 }
 svg += txt(src[0] - 14, src[1] - 22, ['Source du', 'fleuve (Lualaba)'], '#B5470F', 15, 'end', 600);
