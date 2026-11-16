@@ -2,7 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://osmei.fr/</loc></url>
   <url><loc>https://osmei.fr/comprendre/</loc></url>
-  <url><loc>https://osmei.fr/climat-biodiversite/</loc></url>
+  <url><loc>https://osmei.fr/biosphere/</loc></url>
+  <url><loc>https://osmei.fr/climat/</loc></url>
+  <url><loc>https://osmei.fr/faune-et-flore/</loc></url>
+  <url><loc>https://osmei.fr/forets/</loc></url>
+  <url><loc>https://osmei.fr/fleuves-zones-humides-tourbieres/</loc></url>
+  <url><loc>https://osmei.fr/sols/</loc></url>
+  <url><loc>https://osmei.fr/energie/</loc></url>
   <url><loc>https://osmei.fr/guinee-equatoriale/</loc></url>
   <url><loc>https://osmei.fr/gabon/</loc></url>
   <url><loc>https://osmei.fr/republique-centrafricaine/</loc></url>
