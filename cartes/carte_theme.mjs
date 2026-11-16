@@ -157,8 +157,8 @@ if (THEME === 'fleuve') {
 }
 // Titre
 if (!DOC) {
-svg += `<text x="${W / 2}" y="${M + BANDE + 66}" text-anchor="middle" font-size="50" font-weight="500" fill="#000000">Le Bassin du Congo</text>`;
-svg += `<text x="${W / 2}" y="${M + BANDE + 106}" text-anchor="middle" font-size="26" fill="#000000">${THEME === 'foret' ? 'Le massif forestier et les forêts de montagne' : 'Le bassin du fleuve Congo et le fleuve'}</text>`;
+const TITRE = THEME === 'foret' ? ['Le massif forestier et les forêts', 'de montagne du Bassin du Congo'] : ['Le bassin du fleuve Congo', 'et le fleuve Congo'];
+TITRE.forEach((t, n) => { svg += `<text x="${W / 2}" y="${M + BANDE + 56 + n * 50}" text-anchor="middle" font-size="42" font-weight="500" fill="#000000">${t}</text>`; });
 }
 // Légende
 const ly = bas + 36, P = 30;
