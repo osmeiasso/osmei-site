@@ -23,6 +23,7 @@ PAGES = {
     'notre-demarche': 'Notre démarche',
     'actions': 'Agir avec OSMEI',
     'actions-ressources': 'Ressources pédagogiques',
+    'demande-ressources': 'Demande de séquences pédagogiques',
     'formations': 'Nos formations',
     'contact': 'Contact',
     'don': 'Faire un don',
