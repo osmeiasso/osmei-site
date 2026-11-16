@@ -30,7 +30,7 @@ const ODD = ['#E5243B','#DDA63A','#4C9F38','#C5192D','#FF3A21','#26BDE2','#FCC30
 const lw = (W - 2 * M) / 17;
 ODD.forEach((c, i) => { svg += `<rect x="${M + i * lw}" y="${M}" width="${lw + 0.5}" height="${BANDE}" fill="${c}"/><rect x="${M + i * lw}" y="${H - M - BANDE}" width="${lw + 0.5}" height="${BANDE}" fill="${c}"/>`; });
 svg += `<text x="${W / 2}" y="${M + BANDE + 70}" text-anchor="middle" font-size="44" font-weight="500" fill="#000">Le Bassin du Congo</text>`;
-svg += `<text x="${W / 2}" y="${M + BANDE + 115}" text-anchor="middle" font-size="26" fill="#000">Le massif forestier et le bassin du fleuve Congo</text>`;
+svg += `<text x="${W / 2}" y="${M + BANDE + 115}" text-anchor="middle" font-size="26" fill="#000">Le massif forestier et le bassin du Fleuve Congo</text>`;
 
 // Tous les pays visibles : contour gris fin
 const visibles = monde.filter(f => { const b = path.bounds(f); return isFinite(b[0][0]) && b[1][0] - b[0][0] > 0; });
@@ -82,7 +82,7 @@ svg += `<line x1="${M + 20}" y1="${ly}" x2="${M + 90}" y2="${ly}" stroke="${VERT
 svg += `<text x="${M + 105}" y="${ly + 6}" font-size="20" fill="#000">Massif forestier du Bassin du Congo : les six pays (contour extérieur)</text>`;
 ly += 42;
 svg += `<rect x="${M + 20}" y="${ly - 12}" width="70" height="24" fill="${BLEU}" fill-opacity="0.10"/><line x1="${M + 20}" y1="${ly}" x2="${M + 90}" y2="${ly}" stroke="${BLEU}" stroke-width="4" stroke-dasharray="14 7"/>`;
-svg += `<text x="${M + 105}" y="${ly + 6}" font-size="20" fill="#000">Bassin du fleuve Congo : territoire dont les eaux s'écoulent vers le fleuve</text>`;
+svg += `<text x="${M + 105}" y="${ly + 6}" font-size="20" fill="#000">Bassin du Fleuve Congo : territoire dont les eaux s'écoulent vers le fleuve</text>`;
 ly += 42;
 svg += `<line x1="${M + 20}" y1="${ly}" x2="${M + 90}" y2="${ly}" stroke="${ORANGE}" stroke-width="4.5" stroke-linecap="round"/><circle cx="${M + 90}" cy="${ly}" r="6" fill="${ORANGE}"/>`;
 svg += `<text x="${M + 105}" y="${ly + 6}" font-size="20" fill="#000">Fleuve Congo, de sa source (Lualaba) à l'océan Atlantique</text>`;
@@ -91,7 +91,7 @@ svg += `<line x1="${M + 20}" y1="${ly}" x2="${M + 90}" y2="${ly}" stroke="#000" 
 svg += `<line x1="${W / 2 + 60}" y1="${ly}" x2="${W / 2 + 130}" y2="${ly}" stroke="${GRIS}" stroke-width="1.2"/><text x="${W / 2 + 145}" y="${ly + 6}" font-size="20" fill="#000">Autres pays</text>`;
 ly += 50;
 svg += `<text x="${M + 20}" y="${ly}" font-size="13" fill="#39434B">Sources : frontières Natural Earth 1:50 000 000 et fleuve Natural Earth 1:10 000 000 (domaine public) ; world-atlas 2.0 (M. Bostock, licence ISC).</text>`;
-svg += `<text x="${M + 20}" y="${ly + 20}" font-size="13" fill="#39434B">Bassin du fleuve Congo : GRDC (2020), Major River Basins of the World, Global Runoff Data Centre, Coblence, Bundesanstalt für Gewässerkunde (BfG).</text>`;
+svg += `<text x="${M + 20}" y="${ly + 20}" font-size="13" fill="#39434B">Bassin du Fleuve Congo : GRDC (2020), Major River Basins of the World, Global Runoff Data Centre, Coblence, Bundesanstalt für Gewässerkunde (BfG).</text>`;
 svg += '</svg>';
 fs.writeFileSync('carte-massif-et-bassin-fleuve.svg', svg);
 console.log('ok', svg.length);

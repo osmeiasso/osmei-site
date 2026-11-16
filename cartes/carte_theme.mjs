@@ -146,7 +146,7 @@ if (THEME === 'fleuve') {
   svg += top([13.184337, -5.856296], ['Embouchure'], EAU, 14, -10, 22, 'end');
   svg += top([21.0, 1.9], ['Fleuve Congo'], EAU, 17, 0, -12);
   svg += top([26.3, -7.4], ['Lualaba'], EAU, 14, -10, 0, 'end');
-  svg += top([18.6, -9.2], ['Bassin du fleuve Congo'], VIOLET, 16, 0, 0);
+  svg += top([18.6, -9.2], ['Bassin du Fleuve Congo'], VIOLET, 16, 0, 0);
 }
 // Océan Atlantique
 {
@@ -157,7 +157,7 @@ if (THEME === 'fleuve') {
 }
 // Titre
 if (!DOC) {
-const TITRE = THEME === 'foret' ? ['Le massif forestier et les forêts', 'de montagne du Bassin du Congo'] : ['Le bassin du fleuve Congo', 'et le fleuve Congo'];
+const TITRE = THEME === 'foret' ? ['Le massif forestier et les forêts', 'de montagne du Bassin du Congo'] : ['Le bassin du Fleuve Congo'];
 TITRE.forEach((t, n) => { svg += `<text x="${W / 2}" y="${M + BANDE + 56 + n * 50}" text-anchor="middle" font-size="42" font-weight="500" fill="#000000">${t}</text>`; });
 }
 // Légende
@@ -168,7 +168,7 @@ const L = [
   ...(THEME === 'foret' ? [
   [`<rect x="${M + 20}" y="Y0" width="40" height="18" fill="${VFORET}" fill-opacity="0.16"/><line x1="${M + 20}" y1="Y" x2="${M + 60}" y2="Y" stroke="${VFORET}" stroke-width="3" stroke-dasharray="10 6"/>`, 'Massif forestier du Bassin du Congo (forêts denses humides de basse altitude)'],
   [`<rect x="${M + 20}" y="Y0" width="40" height="18" fill="url(#pointsVerts)"/>`, 'Forêts de montagne (rift albertin ; Cameroun : hauts plateaux, mont Cameroun et Bioko)']] : [
-  [`<line x1="${M + 20}" y1="Y" x2="${M + 60}" y2="Y" stroke="${VIOLET}" stroke-width="3.5"/>`, 'Bassin du fleuve Congo (territoire dont les eaux s\'écoulent vers le fleuve)'],
+  [`<line x1="${M + 20}" y1="Y" x2="${M + 60}" y2="Y" stroke="${VIOLET}" stroke-width="3.5"/>`, 'Bassin du Fleuve Congo (territoire dont les eaux s\'écoulent vers le fleuve)'],
   [`<line x1="${M + 20}" y1="Y" x2="${M + 60}" y2="Y" stroke="${EAU}" stroke-width="4"/><circle cx="${M + 60}" cy="Y" r="5" fill="${EAU}"/>`, 'Fleuve Congo, de sa source (Lualaba) à l\'océan Atlantique']]),
 ];
 const wrap = (t, n) => { const w = t.split(' '), out = ['']; w.forEach(m => { const c = out[out.length - 1]; if (c && !/^[:;!?»]$/.test(m) && (c + ' ' + m).length > n) out.push(m); else out[out.length - 1] = c ? c + ' ' + m : m; }); return out; };
