@@ -567,7 +567,7 @@ footer a{color:#fff}
           <label class="dr-case"><input type="checkbox" name="niveau" value="Formation d'adultes"> Formation d'adultes</label>
       </fieldset>
       <label class="dr-plein">Usage prévu *<textarea name="usage" rows="4" required placeholder="En classe, en formation, dans un projet d'établissement…"></textarea></label>
-      <label class="dr-case dr-plein"><input type="checkbox" name="accord" required> J'accepte que mes coordonnées soient conservées par l'association pour le suivi de ma demande. *</label>
+      <label class="dr-case dr-plein"><input type="checkbox" name="accord" required> J'accepte que mes coordonnées soient conservées par l'association pour le suivi de ma demande, pendant 3 ans après le dernier échange. *</label>
       <p class="dr-erreur" id="dr-erreur" hidden></p>
       <button type="submit" class="btn plein">Préparer ma demande par e-mail</button>
     </form>
@@ -679,7 +679,7 @@ footer a{color:#fff}
     <h3>Propriété intellectuelle</h3>
     <p>Les textes, visuels et cartes publiés sur ce site sont la propriété de l'association, sauf mention contraire. Toute reproduction doit citer la source et, pour un usage autre que pédagogique et non commercial, faire l'objet d'une autorisation préalable. Les cartes ont été réalisées à partir de données libres : Natural Earth (domaine public), world-atlas (licence ISC), GRDC, Major River Basins of the World (BfG, Coblence) et WWF, Terrestrial Ecoregions of the World (Olson et al., 2001). Les sources des articles sont indiquées à la fin de chacun d'eux.</p>
     <h3>Données personnelles</h3>
-    <p>Ce site ne comporte ni compte utilisateur, ni outil de mesure d'audience, et ne dépose pas de cookies. Ses polices de caractères sont hébergées sur le site lui-même : aucune donnée n'est transmise à un service tiers pour les afficher. La fiche de demande de séquences pédagogiques ne transmet aucune donnée au site : elle prépare un e-mail que vous envoyez vous-même depuis votre messagerie. Les messages envoyés à l'adresse de contact, y compris les demandes de ressources, servent uniquement à y répondre et à assurer le suivi des demandes. Conformément au règlement général sur la protection des données (RGPD), vous pouvez demander l'accès à vos données, leur rectification ou leur suppression en écrivant à <a href="mailto:osmei.org@gmail.com">osmei.org@gmail.com</a>.</p>
+    <p>Ce site ne comporte ni compte utilisateur, ni outil de mesure d'audience, et ne dépose pas de cookies. Ses polices de caractères sont hébergées sur le site lui-même : aucune donnée n'est transmise à un service tiers pour les afficher. La fiche de demande de séquences pédagogiques ne transmet aucune donnée au site : elle prépare un e-mail que vous envoyez vous-même depuis votre messagerie. Les messages envoyés à l'adresse de contact, y compris les demandes de ressources, servent uniquement à y répondre et à assurer le suivi des demandes. Elles sont conservées 3 ans après le dernier échange, puis supprimées. Conformément au règlement général sur la protection des données (RGPD), vous pouvez demander l'accès à vos données, leur rectification ou leur suppression en écrivant à <a href="mailto:osmei.org@gmail.com">osmei.org@gmail.com</a>.</p>
     <h3>Liens externes</h3>
     <p>Le site renvoie vers des sites extérieurs (sources, réseaux sociaux). L'association n'est pas responsable de leur contenu.</p>
   </div>
@@ -908,7 +908,7 @@ var PUBLIES = [];
         "Nombre d'élèves ou de stagiaires : "+(f.effectif.value.trim()||'non précisé'),'',
         'Ressource(s) demandée(s) :'].concat(res.map(function(r){return '- '+r}))
         .concat(['','Niveau visé : '+(niv.join(', ')||'non précisé'),'','Usage prévu :',f.usage.value.trim(),'',
-        "J'accepte que mes coordonnées soient conservées par l'association pour le suivi de ma demande."]).join('\n');
+        "J'accepte que mes coordonnées soient conservées par l'association pour le suivi de ma demande, pendant 3 ans après le dernier échange."]).join('\n');
       document.getElementById('dr-texte').textContent='À : '+DEST+'\nObjet : '+objet+'\n\n'+corps;
       document.getElementById('dr-resultat').hidden=false;
       location.href='mailto:'+DEST+'?subject='+encodeURIComponent(objet)+'&body='+encodeURIComponent(corps);
