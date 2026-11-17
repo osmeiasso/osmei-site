@@ -76,6 +76,7 @@ for pid, sl in ARTICLES.items():
     p = [x for x in POSTS if str(x['id']) == pid][0]; a = p['article']
     figs = a.get('figures') or []
     img = SITE + '/' + figs[0]['img'].lstrip('/') if figs and figs[0].get('img') else IMG_DEF
+    if a.get('partage_img'): img = SITE + '/' + a['partage_img'].lstrip('/')
     desc = re.sub(r'\s+', ' ', a.get('chapeau', '')).strip()
     desc = desc if len(desc) <= 200 else desc[:197].rsplit(' ', 1)[0] + '…'
     url = '%s/articles/%s/' % (SITE, sl)
