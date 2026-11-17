@@ -442,7 +442,7 @@ footer a{color:#fff;display:inline-block;padding:6px 4px;min-width:24px;text-ali
         </div>
         <div class="jeu-actions"><button type="button" class="btn jeu-verif">Vérifier</button> <button type="button" class="btn secondaire jeu-raz">Recommencer</button></div>
         <p class="jeu-score" aria-live="polite"></p>
-        <p class="jeu-note">Depuis le 2 janvier 2026, Ciudad de la Paz est la capitale de la Guinée équatoriale, à la place de Malabo (décret-loi n° 1/2026).</p>
+        <p class="jeu-note" hidden>Depuis le 2 janvier 2026, Ciudad de la Paz est la capitale de la Guinée équatoriale, à la place de Malabo (décret-loi n° 1/2026).</p>
       </div>
     </div>
     <div class="grille g3" id="pubs" style="align-items:start"></div>
@@ -949,12 +949,12 @@ var PUBLIES = [];
     [].forEach.call(document.querySelectorAll('.jeu[data-jeu]'),function(bloc){
       var cfg=JEUX[bloc.getAttribute('data-jeu')]; if(!cfg) return;
       var f=bloc.querySelector('.jeu-choix'), sc=bloc.querySelector('.jeu-score'), compte=false;
-      function dessiner(){f.innerHTML=[1,2,3,4,5,6].map(function(n){return '<label><span class="num">'+n+'</span><select data-n="'+n+'" aria-label="Numéro '+n+'"><option value="">'+cfg.vide+'</option>'+cfg.choix.map(function(o){return '<option>'+o+'</option>'}).join('')+'</select></label>'}).join('');sc.textContent='';compte=false;}
+      function dessiner(){f.innerHTML=[1,2,3,4,5,6].map(function(n){return '<label><span class="num">'+n+'</span><select data-n="'+n+'" aria-label="Numéro '+n+'"><option value="">'+cfg.vide+'</option>'+cfg.choix.map(function(o){return '<option>'+o+'</option>'}).join('')+'</select></label>'}).join('');sc.textContent='';compte=false;var nt=bloc.querySelector('.jeu-note');if(nt)nt.hidden=true;}
       dessiner();
       bloc.querySelector('.jeu-verif').addEventListener('click',function(){var bon=0;
         [].forEach.call(f.querySelectorAll('select'),function(s){var n=s.getAttribute('data-n'),l=s.parentNode;var c=l.querySelector('.corr');if(c)c.remove();
           l.classList.remove('ok','ko');if(s.value===cfg.sol[n]){bon++;l.classList.add('ok')}else{l.classList.add('ko');var e=document.createElement('span');e.className='corr';e.textContent='Réponse\u00a0: '+cfg.sol[n];l.appendChild(e)}});
-        sc.textContent='Score\u00a0: '+bon+' sur 6'+(bon===6?'. Bravo\u00a0!':'.');
+        var nt=bloc.querySelector('.jeu-note');if(nt)nt.hidden=false;sc.textContent='Score\u00a0: '+bon+' sur 6'+(bon===6?'. Bravo\u00a0!':'.');
         if(!compte&&window.goatcounter&&window.goatcounter.count){compte=true;window.goatcounter.count({path:cfg.chemin,title:cfg.titre,event:true});}});
       bloc.querySelector('.jeu-raz').addEventListener('click',dessiner);
     });
