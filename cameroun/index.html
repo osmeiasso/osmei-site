@@ -424,7 +424,7 @@ footer a{color:#fff;display:inline-block;padding:6px 4px;min-width:24px;text-ali
     <div class="filtres"><select class="pays-sel" id="pays-sel" aria-label="Pays" style="margin-left:0"></select></div>
     <div id="jeu-ludique" hidden>
       <div class="jeu" data-jeu="pays">
-        <h3>Carte mystère : les 6 pays du massif forestier du Bassin du Congo</h3>
+        <h3>Quiz n° 1 : les pays du massif forestier du Bassin du Congo</h3>
         <p>Associez chaque numéro de la carte au bon pays, puis cliquez sur « Vérifier ».</p>
         <div class="jeu-corps">
           <figure class="jeu-carte"><img src="/cartes/carte-mystere-6-pays.svg" alt="Carte des 6 pays du massif forestier du Bassin du Congo, numérotés de 1 à 6, sans leurs noms"><figcaption>Carte : Natural Earth (domaine public) ; world-atlas (licence ISC).</figcaption></figure>
@@ -434,7 +434,7 @@ footer a{color:#fff;display:inline-block;padding:6px 4px;min-width:24px;text-ali
         <p class="jeu-score" aria-live="polite"></p>
       </div>
       <div class="jeu" data-jeu="capitales">
-        <h3>Les capitales des 6 pays du massif forestier</h3>
+        <h3>Quiz n° 2 : les capitales des pays du massif forestier du Bassin du Congo</h3>
         <p>Chaque point orange numéroté marque une capitale. Associez chaque numéro à la bonne capitale, puis cliquez sur « Vérifier ».</p>
         <div class="jeu-corps">
           <figure class="jeu-carte"><img src="/cartes/carte-capitales-6-pays.svg" alt="Carte des 6 pays du massif forestier du Bassin du Congo avec leurs noms et 6 capitales numérotées en orange"><figcaption>Carte : Natural Earth (domaine public) ; world-atlas (licence ISC).</figcaption></figure>
@@ -943,8 +943,8 @@ var PUBLIES = [];
   }
   (function(){
     var JEUX={
-      pays:{choix:['Cameroun','Gabon','Guinée équatoriale','République centrafricaine','République du Congo','République Démocratique du Congo (RDC)'],sol:{1:'Cameroun',2:'République centrafricaine',3:'République du Congo',4:'République Démocratique du Congo (RDC)',5:'Gabon',6:'Guinée équatoriale'},vide:'Choisir un pays',titre:'Partie jouée : carte mystère',chemin:'jeu-carte-mystere'},
-      capitales:{choix:['Bangui','Brazzaville','Ciudad de la Paz','Kinshasa','Libreville','Malabo','Yaoundé'],sol:{1:'Yaoundé',2:'Bangui',3:'Brazzaville',4:'Kinshasa',5:'Libreville',6:'Ciudad de la Paz'},vide:'Choisir une capitale',titre:'Partie jouée : capitales',chemin:'jeu-capitales'}
+      pays:{choix:['Cameroun','Gabon','Guinée équatoriale','République centrafricaine','République du Congo','République Démocratique du Congo (RDC)'],sol:{1:'Cameroun',2:'République centrafricaine',3:'République du Congo',4:'République Démocratique du Congo (RDC)',5:'Gabon',6:'Guinée équatoriale'},vide:'Choisir un pays',titre:'Partie jouée : quiz n° 1, pays',chemin:'jeu-carte-mystere'},
+      capitales:{choix:['Bangui','Brazzaville','Ciudad de la Paz','Kinshasa','Libreville','Malabo','Yaoundé'],sol:{1:'Yaoundé',2:'Bangui',3:'Brazzaville',4:'Kinshasa',5:'Libreville',6:'Ciudad de la Paz'},vide:'Choisir une capitale',titre:'Partie jouée : quiz n° 2, capitales',chemin:'jeu-capitales'}
     };
     [].forEach.call(document.querySelectorAll('.jeu[data-jeu]'),function(bloc){
       var cfg=JEUX[bloc.getAttribute('data-jeu')]; if(!cfg) return;
