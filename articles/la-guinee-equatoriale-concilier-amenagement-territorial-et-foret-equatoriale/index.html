@@ -112,6 +112,7 @@ nav li.deroulant:hover>ul.sous-menu,nav li.deroulant:focus-within>ul.sous-menu{d
 .porte .lien{display:block;margin-top:12px;color:var(--c);font-family:'Jost',sans-serif;font-size:14px}
 .regles{max-width:760px;padding-left:20px}
 .regles li{margin-bottom:10px;text-align:justify}
+.art-signature{font-size:14px;color:#39434B;margin:0 0 6px;font-style:italic;text-align:left}.art-signature a{color:inherit}
 .art-tableau{margin:34px 0 10px}.art-tableau h2{font-size:22px}.tab-defile{overflow-x:auto}.art-tableau table{border-collapse:collapse;width:100%;font-size:15px}.art-tableau th{background:#003366;color:#fff;text-align:left;padding:8px 10px;font-weight:600}.art-tableau td{border:1px solid #C9CED3;padding:8px 10px;vertical-align:top;text-align:left}.art-tableau tr:nth-child(even) td{background:#F4F7FA}.tab-source{font-size:13px;color:#39434B;margin-top:6px}.art-tableau table.num th:first-child,.art-tableau table.num td:first-child{width:1%;white-space:nowrap}.art-tableau table:not(.num) td:first-child{width:34%;font-weight:600}
 .inspirent{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;margin:22px 0 10px}
 .inspire{background:#fff;border:1px solid #DCE3EA;border-radius:14px;padding:22px;display:flex;flex-direction:column}
@@ -748,7 +749,9 @@ footer a{color:#fff;display:inline-block;padding:6px 4px;min-width:24px;text-ali
     <p><span class="logo" role="img" aria-label="OSMEI" style="font-size:20px;vertical-align:-2px"><span class="o">O</span>S<span class="m">M</span>E<span class="i">I</span></span> Orientation Scolaire, Médiation Éducative et Interculturelle, association loi 1901, fondée en mai 2015.<br>Numéro RNA : W771012599<br>Contact : <a href="mailto:osmei.org@gmail.com">osmei.org@gmail.com</a></p>
     <h3>Directrice de la publication</h3>
     <p>Julie Okimbi, présidente de l'association.</p>
-    <h3>Hébergeur</h3>
+    <h3>Rédaction des articles</h3>
+<p>Les articles sont signés « La rédaction d'<span class="logo" role="img" aria-label="OSMEI" style="font-size:15px;font-style:normal"><span class="o">O</span>S<span class="m">M</span>E<span class="i">I</span></span>, sous la direction de Julie Okimbi ». Ils sont rédigés avec l'aide d'un outil d'intelligence artificielle. Chaque fait est vérifié sur des sources primaires, citées à la fin de l'article, et chaque article est validé par la présidente de l'association avant publication.</p>
+<h3>Hébergeur</h3>
     <p>GitHub, Inc. (service GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Site : <a href="https://pages.github.com" target="_blank" rel="noopener">pages.github.com</a></p>
     <h3>Propriété intellectuelle</h3>
     <p>Les textes, visuels et cartes publiés sur ce site sont la propriété de l'association, sauf mention contraire. Toute reproduction doit citer la source et, pour un usage autre que pédagogique et non commercial, faire l'objet d'une autorisation préalable. Les cartes ont été réalisées à partir de données libres : Natural Earth (domaine public), world-atlas (licence ISC), GRDC, Major River Basins of the World (BfG, Coblence) et WWF, Terrestrial Ecoregions of the World (Olson et al., 2001). Les sources des articles sont indiquées à la fin de chacun d'eux.</p>
@@ -822,7 +825,7 @@ var PUBLIES = [];
     var pz=PAYS_BASSIN.filter(function(q){return q.cle===p.pays})[0];
     x+=pz?'<a class="retour" href="#'+pz.slug+'">← '+esc(nom(pz))+'</a>':'<a class="retour" href="#'+r.id+'">← '+esc(r.label||r.nom)+'</a>';
     x+='<h1>'+esc(a.titre)+'</h1>';
-    x+='<div class="meta">'+esc(dateFr(p.date))+(p.pays&&p.pays.indexOf('Bassin')!==0?' · '+esc(p.pays):'')+(p.sous?' · '+esc(p.sous):'')+'</div>';
+    x+='<div class="art-signature">La rédaction d\'<span class="logo" role="img" aria-label="OSMEI" style="font-size:15px;font-style:normal"><span class="o">O</span>S<span class="m">M</span>E<span class="i">I</span></span>, sous la direction de Julie Okimbi&nbsp;· <a href="/mentions-legales/">notre méthode</a></div>';x+='<div class="meta">'+esc(dateFr(p.date))+(p.pays&&p.pays.indexOf('Bassin')!==0?' · '+esc(p.pays):'')+(p.sous?' · '+esc(p.sous):'')+'</div>';
     var lienArt='https://osmei.fr'+(ART_SLUGS[p.id]?'/articles/'+ART_SLUGS[p.id]+'/':'/#article-'+p.id);
     x+='<button type="button" class="btn copie-lien" data-lien="'+esc(lienArt)+'">Copier le lien de l\'article</button>';
     x+='<p class="chapeau">'+esc(a.chapeau)+'</p>';
