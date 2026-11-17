@@ -915,7 +915,7 @@ var PUBLIES = [];
     } else if(etat.vueSous&&etat.sous){document.getElementById('r-sur').textContent=r.label||r.nom;document.getElementById('r-titre').textContent=etat.sous;}
     else document.getElementById('r-sur').textContent='';
     document.getElementById('jeu-ludique').hidden=r.id!=='ludique'||!!etat.sous;
-    document.getElementById('pubs').innerHTML=l.length?l.slice(0,etat.n).map(carte).join(''):vide(etat.vuePays&&!etat.sous?'Les publications sur ce pays apparaîtront ici.':etat.sous?'Les articles de cette sous-rubrique apparaîtront ici.':'Les publications de cette rubrique apparaîtront ici.');
+    document.getElementById('pubs').innerHTML=l.length?l.slice(0,etat.n).map(carte).join(''):'';
     document.getElementById('plus').hidden=l.length<=etat.n;
   }
   (function(){
