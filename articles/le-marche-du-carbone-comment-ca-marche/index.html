@@ -112,7 +112,7 @@ nav li.deroulant:hover>ul.sous-menu,nav li.deroulant:focus-within>ul.sous-menu{d
 .porte .lien{display:block;margin-top:12px;color:var(--c);font-family:'Jost',sans-serif;font-size:14px}
 .regles{max-width:760px;padding-left:20px}
 .regles li{margin-bottom:10px;text-align:justify}
-.jeu{border:1px solid #C9CED3;border-radius:16px;padding:22px 24px;margin:6px 0 26px;background:#fff}.jeu h3{margin:0 0 6px}.jeu-corps{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start;margin-top:12px}.jeu-carte{margin:0}.jeu-carte img{width:100%;height:auto;display:block}.jeu-carte figcaption{font-size:12px;color:#39434B}.jeu-choix label{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:0 0 12px;font-weight:600}.jeu-choix .num{display:inline-flex;width:30px;height:30px;border-radius:50%;background:#003366;color:#fff;align-items:center;justify-content:center;flex:none}.jeu-choix select{flex:1;padding:6px 8px;font-size:15px;border:1px solid #C9CED3;border-radius:8px}.jeu-choix .ok select{border-color:#3F7E44;background:#EEF7EC}.jeu-choix .ko select{border-color:#C5192D;background:#FCEDEE}.jeu-choix .corr{flex-basis:100%;padding-left:40px;font-size:13px;color:#C5192D;font-weight:400}.jeu-actions{margin-top:8px}.jeu-score{font-weight:700;margin-top:10px}.jeu-note{font-size:13px;color:#39434B;margin-top:6px}.jeu[data-jeu="capitales"] .num{background:#FD6925}.btn.secondaire{background:#fff;color:#003366;border:1px solid #003366}@media (max-width:700px){.jeu-corps{grid-template-columns:1fr}}
+.jeu{border:1px solid #C9CED3;border-radius:16px;padding:22px 24px;margin:6px 0 26px;background:#fff}.jeu h3{margin:0 0 6px}.jeu-corps{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start;margin-top:12px}.jeu-carte{margin:0}.jeu-carte img{width:100%;height:auto;display:block}.jeu-carte figcaption{font-size:12px;color:#39434B}.jeu-choix label{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:0 0 12px;font-weight:600}.jeu-choix .num{display:inline-flex;width:30px;height:30px;border-radius:50%;background:#003366;color:#fff;align-items:center;justify-content:center;flex:none}.jeu-choix select{flex:1;padding:6px 8px;font-size:15px;border:1px solid #C9CED3;border-radius:8px}.jeu-choix .ok select{border-color:#3F7E44;background:#EEF7EC}.jeu-choix .ko select{border-color:#C5192D;background:#FCEDEE}.jeu-choix .corr{flex-basis:100%;padding-left:40px;font-size:13px;color:#C5192D;font-weight:400}.jeu-actions{margin-top:8px}.jeu-score{font-weight:700;margin-top:10px}.jeu[id]{scroll-margin-top:84px}.jeu-note{font-size:13px;color:#39434B;margin-top:6px}.jeu[data-jeu="capitales"] .num{background:#FD6925}.btn.secondaire{background:#fff;color:#003366;border:1px solid #003366}@media (max-width:700px){.jeu-corps{grid-template-columns:1fr}}
 .art-signature{font-size:14px;color:#39434B;margin:0 0 6px;font-style:italic;text-align:left}.art-signature a{color:inherit}
 .art-tableau{margin:34px 0 10px}.art-tableau h2{font-size:22px}.tab-defile{overflow-x:auto}.art-tableau table{border-collapse:collapse;width:100%;font-size:15px}.art-tableau th{background:#003366;color:#fff;text-align:left;padding:8px 10px;font-weight:600}.art-tableau td{border:1px solid #C9CED3;padding:8px 10px;vertical-align:top;text-align:left}.art-tableau tr:nth-child(even) td{background:#F4F7FA}.tab-source{font-size:13px;color:#39434B;margin-top:6px}.art-tableau table.num th:first-child,.art-tableau table.num td:first-child{width:1%;white-space:nowrap}.art-tableau table:not(.num) td:first-child{width:34%;font-weight:600}
 .inspirent{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;margin:22px 0 10px}
@@ -424,7 +424,7 @@ footer a{color:#fff;display:inline-block;padding:6px 4px;min-width:24px;text-ali
     <p class="filtre-actif" id="filtre-pays" hidden></p>
     <div class="filtres"><select class="pays-sel" id="pays-sel" aria-label="Pays" style="margin-left:0"></select></div>
     <div id="jeu-ludique" hidden>
-      <div class="jeu" data-jeu="pays">
+      <div class="jeu" data-jeu="pays" id="quiz-1">
         <h3>Quiz n° 1 : les pays du massif forestier du Bassin du Congo</h3>
         <p>Associez chaque numéro de la carte au bon pays, puis cliquez sur « Vérifier ».</p>
         <div class="jeu-corps">
@@ -434,7 +434,7 @@ footer a{color:#fff;display:inline-block;padding:6px 4px;min-width:24px;text-ali
         <div class="jeu-actions"><button type="button" class="btn jeu-verif">Vérifier</button> <button type="button" class="btn secondaire jeu-raz">Recommencer</button></div>
         <p class="jeu-score" aria-live="polite"></p>
       </div>
-      <div class="jeu" data-jeu="capitales">
+      <div class="jeu" data-jeu="capitales" id="quiz-2">
         <h3>Quiz n° 2 : les capitales des pays du massif forestier du Bassin du Congo</h3>
         <p>Chaque numéro orange désigne un pays. Choisissez sa capitale, puis cliquez sur « Vérifier ».</p>
         <div class="jeu-corps">
@@ -1130,6 +1130,9 @@ var PUBLIES = [];
     if(location.hash===h) router(); else location.hash=h;
   });
   window.addEventListener('hashchange',router);
+  (function(){var q=new URLSearchParams(location.search).get('quiz');if(!/^\d+$/.test(q||''))return;
+    function aller(){var el=document.getElementById('quiz-'+q);if(el&&el.offsetParent)el.scrollIntoView({block:'start'});}
+    setTimeout(aller,150);window.addEventListener('load',function(){setTimeout(aller,50)});})();
   window.addEventListener('popstate',router);
   document.getElementById('burger').addEventListener('click',function(){menu.classList.toggle('ouvert')});
   [].slice.call(document.querySelectorAll('nav li.deroulant')).forEach(function(li){
