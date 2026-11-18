@@ -151,6 +151,7 @@ nav a.menu-loupe .loupe-txt{display:none}
 .res-demande,.lire-article,.profil-mail,.retour{display:inline-block;padding:4px 0}
 .res-demande{font-family:'Jost',sans-serif;font-size:15px;font-weight:500}
 .copie-lien{font-size:14px;padding:6px 16px;margin:4px 0 18px}
+.partage{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 18px}.partage .btn{font-size:14px;padding:6px 16px;margin:0}
 .dr-form{margin-top:24px;max-width:860px}
 .dr-grille{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
 .dr-form label{display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--encre)}
@@ -395,6 +396,7 @@ footer a{color:#fff;display:inline-block;padding:6px 4px;min-width:24px;text-ali
     <h2 id="r-titre"></h2>
     <p class="texte" id="r-desc"></p>
     <p class="source-def" id="r-source" hidden></p>
+    <div id="r-partage"></div>
 <div id="bloc-carte" class="bloc-carte" hidden>
     <div class="cadre">
       <span class="languette-odd" style="--i:3;background:#C5192D" title="ODD 4, Éducation de qualité"><span class="legende-odd" style="color:#C5192D">ODD 4 Éducation</span></span>
@@ -856,6 +858,7 @@ var PUBLIES = [];
   function aArticle(p){var a=p.article;return !!(a&&(a.statut==='Validé'||(window.APERCU_ARTICLES&&a.statut==='Proposé')))}
   var CARTES_ART={fleuve:['carte-bassin-congo-fleuve','Le bassin du Fleuve Congo et le Fleuve Congo, de sa source à l\'océan'],foret:['carte-bassin-congo-foret','Le massif forestier de basse altitude et les forêts de montagne du Bassin du Congo']};
   function figureCarte(k){var c=CARTES_ART[k];return '<figure class="fig-carte"><img src="https://osmei.fr/cartes/'+c[0]+'.svg" alt="Carte : '+esc(c[1])+'" loading="lazy"><a class="agrandir" href="https://osmei.fr/cartes/'+c[0]+'.svg" target="_blank" rel="noopener">Agrandir la carte ↗</a><figcaption>'+esc(c[1])+'</figcaption></figure>'}
+  function barrePartage(url,titre){return '<div class="partage" data-lien="'+esc(url)+'" data-titre="'+esc(titre)+'"><button type="button" class="btn partager">Partager</button><button type="button" class="btn copier-lien">Copier le lien</button></div>';}
   function rendreArticle(p){
     var a=p.article, r=PAR_NOM[p.pillar]||{id:'bassin-du-congo',nom:''};
     var x=(a.statut!=='Validé'?'<div class="apercu">Aperçu : article proposé, en attente de validation.</div>':'');
@@ -864,7 +867,7 @@ var PUBLIES = [];
     x+='<h1>'+esc(a.titre)+'</h1>';
     x+='<div class="art-signature">La rédaction d\'<span class="logo" role="img" aria-label="OSMEI" style="font-size:15px;font-style:normal"><span class="o">O</span>S<span class="m">M</span>E<span class="i">I</span></span>, sous la direction de Julie Okimbi&nbsp;· <a href="/mentions-legales/">notre méthode</a></div>';x+='<div class="meta">'+esc(dateFr(p.date))+(p.pays&&p.pays.indexOf('Bassin')!==0?' · '+esc(p.pays):'')+(p.sous?' · '+esc(p.sous):'')+'</div>';
     var lienArt='https://osmei.fr'+(ART_SLUGS[p.id]?'/articles/'+ART_SLUGS[p.id]+'/':'/#article-'+p.id);
-    x+='<button type="button" class="btn copie-lien" data-lien="'+esc(lienArt)+'">Copier le lien de l\'article</button>';
+    x+=barrePartage(lienArt,a.titre);
     x+='<p class="chapeau">'+esc(a.chapeau)+'</p>';
     a.parties.forEach(function(s){x+='<h2>'+esc(s.question)+'</h2>'+s.texte.split(/\n\n+/).map(function(t){var m=t.match(/^\[\[carte:(\w+)\]\]$/);if(m&&CARTES_ART[m[1]])return figureCarte(m[1]);return '<p>'+esc(t)+'</p>'}).join('')});
     x+='<div class="retenir"><b>À retenir</b><ul>'+a.retenir.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul></div>';
@@ -945,6 +948,8 @@ var PUBLIES = [];
       var t=document.getElementById('tous-quiz'); if(t) t.hidden=!seul;
       var pu=document.getElementById('pubs'); if(pu&&seul) pu.hidden=true; else if(pu&&pu.getAttribute('data-quiz-masque')) pu.hidden=false;
       if(pu) pu.setAttribute('data-quiz-masque',seul?'1':'');})();
+    var slugP=etat.vuePays?(PAYS_BASSIN.filter(function(q){return q.cle===etat.pays})[0]||{}).slug:(etat.vueSous&&r.slugs&&r.sous.indexOf(etat.sous)>=0?r.slugs[r.sous.indexOf(etat.sous)]:r.id);
+    document.getElementById('r-partage').innerHTML=barrePartage('https://osmei.fr/'+(slugP==='bassin-du-congo'?'':slugP+'/'),document.getElementById('r-titre').textContent+' | OSMEI');
     document.getElementById('pubs').innerHTML=l.length?l.slice(0,etat.n).map(carte).join(''):'';
     document.getElementById('plus').hidden=l.length<=etat.n;
   }
@@ -958,13 +963,8 @@ var PUBLIES = [];
       (function(){var num=(bloc.id||'').replace('quiz-',''); if(!num) return;
         var url='https://osmei.fr/ludique/?quiz='+num, titre=bloc.querySelector('h3').textContent, txt=titre+'. Testez vos connaissances\u00a0!';
         var p=document.createElement('div'); p.className='jeu-partage';
-        p.innerHTML='<button type="button" class="jeu-partager">Partager ce quiz</button>';
+        p.innerHTML=barrePartage(url,titre);
         bloc.querySelector('h3').insertAdjacentElement('afterend',p);
-        var bt=p.querySelector('button');
-        function copie(){function ok(){bt.textContent='Lien copié\u00a0!';setTimeout(function(){bt.textContent='Partager ce quiz'},2500)}
-          if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,function(){window.prompt('Copiez le lien du quiz :',url)})}else{window.prompt('Copiez le lien du quiz :',url)}}
-        bt.addEventListener('click',function(){
-          if(navigator.share){navigator.share({title:titre,text:txt,url:url}).catch(function(e){if(!e||e.name!=='AbortError')copie();});}else{copie();}});
       })();
       var f=bloc.querySelector('.jeu-choix'), sc=bloc.querySelector('.jeu-score'), compte=false;
       function dessiner(){f.innerHTML=[1,2,3,4,5,6].map(function(n){return '<label><span class="num">'+n+'</span><select data-n="'+n+'" aria-label="Numéro '+n+'"><option value="">'+cfg.vide+'</option>'+cfg.choix.map(function(o){return '<option>'+o+'</option>'}).join('')+'</select></label>'}).join('');sc.textContent='';compte=false;var nt=bloc.querySelector('.jeu-note');if(nt)nt.hidden=true;}
@@ -1162,6 +1162,12 @@ var PUBLIES = [];
   document.getElementById('burger').addEventListener('click',function(){
     [].slice.call(document.querySelectorAll('nav li.deroulant')).forEach(function(li){
       var o=!!li.querySelector('a.actif');li.classList.toggle('deplie',o);var b=li.querySelector('.deplier');if(b)b.setAttribute('aria-expanded',o?'true':'false');});
+  });
+  document.addEventListener('click',function(e){var b=e.target.closest('.partage .partager, .partage .copier-lien');if(!b)return;
+    var z=b.closest('.partage'),url=z.getAttribute('data-lien'),titre=z.getAttribute('data-titre'),c=z.querySelector('.copier-lien');
+    function copie(){function ok(){c.textContent='Lien copié ✓';setTimeout(function(){c.textContent='Copier le lien'},2500)}
+      try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(ok,function(){window.prompt('Copiez le lien :',url)})}else{window.prompt('Copiez le lien :',url)}}catch(er){window.prompt('Copiez le lien :',url)}}
+    if(b.classList.contains('partager')&&navigator.share){navigator.share({title:titre,url:url}).catch(function(er){if(!er||er.name!=='AbortError')copie();});}else copie();
   });
   document.addEventListener('click',function(e){var b=e.target.closest('.copie-lien');if(!b)return;var t=b.getAttribute('data-lien');
     function ok(){b.textContent='Lien copié ✓';setTimeout(function(){b.textContent='Copier le lien de l\'article'},2500)}
